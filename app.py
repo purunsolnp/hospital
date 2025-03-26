@@ -56,7 +56,9 @@ def notice_list():
     df = pd.read_csv(NOTICES_SHEET_URL)
     df["날짜"] = pd.to_datetime(df["날짜"], errors="coerce")
     df["상단고정"] = df["상단고정"].fillna(False).astype(bool)
-    df = df.sort_values(by="날짜", ascending=False)
+
+    # ✅ 상단 고정 공지를 먼저 정렬한 후, 날짜순 정렬
+    df = df.sort_values(by=["상단고정", "날짜"], ascending=[False, False])
 
     notices = df.to_dict(orient="records")
     return render_template("notices_list.html", notices=notices)

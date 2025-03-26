@@ -1,9 +1,10 @@
+/* ✅ 기본 스타일 설정 */
 body {
     font-family: 'NanumSquareRound', sans-serif;
     margin: 0;
     padding: 0;
-    text-align: left; /* 중앙 정렬 제거 */
-    line-height: 1.6; /* 가독성 향상 */
+    text-align: left;
+    line-height: 1.6;
 }
 
 /* ✅ 전체 페이지 중앙 정렬 */
@@ -11,7 +12,7 @@ body {
     max-width: 900px;
     margin: 0 auto;
     padding: 20px;
-    text-align: center;  /* 전체 내용을 가운데 정렬 */
+    text-align: center;
 }
 
 /* ✅ 진료 과목 및 진료 시간 카드 디자인 */
@@ -32,15 +33,10 @@ body {
     background-color: #f9f9f9;
 }
 
-/* ✅ 제목 크기 증가 */
+/* ✅ 제목 크기 조정 */
 h3 {
     font-size: 1.4rem;
     font-weight: bold;
-}
-
-/* ✅ 진료 과목 및 시간 폰트 크기 조정 */
-.card ul, .card p {
-    font-size: 1.1rem;
 }
 
 /* ✅ QR 코드 정렬 */
@@ -60,27 +56,24 @@ h3 {
     margin-top: 1rem;
 }
 
-.treatment-content {
-    max-width: 900px;
+/* ✅ 의료진 소개 페이지 iframe 높이 자동 조정 */
+.doctor-frame-container iframe {
     width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: left;
-}
-
-.treatment-content img {
+    height: auto !important;
+    min-height: 700px; /* 최소 높이 설정 */
+    border: none;
     display: block;
-    margin: 0 auto; /* 이미지 중앙 정렬 */
-    max-width: 100%;
-    height: auto;
+    margin: auto;
 }
 
-.iframe-container {
-    max-width: 1000px;
-    margin: 0 auto;
-    text-align: left;
+.iframe-container iframe {
+    width: 100%;
+    height: auto !important;
+    min-height: 600px; /* 기본 높이 유지 */
+    border: none;
+    display: block;
+    margin: auto;
 }
-
 iframe {
     width: 100%;
     height: 700px;
@@ -88,42 +81,15 @@ iframe {
     border-radius: 8px;
 }
 
-/* ✅ static/css/style.css에 추가 */
-.doctor-tabs {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    margin-bottom: 20px;
-  }
-  
-  .doctor-tab {
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-    margin: 0 0.5rem;
-    text-decoration: none;
-    color: #008080;
-    border: none;
-    background: none;
-    transition: color 0.3s;
-  }
-  
-  .doctor-tab:hover, .doctor-tab.active {
-    border-bottom: 2px solid #008080;
-  }
-  #calendar {
-    max-width: 1000px;
-    margin: 2rem auto;
-    padding: 20px;
-}
-
-.notices-container {
+/* ✅ 공지사항 스타일 */
+.notices-container, .notice-detail {
     max-width: 900px;
     margin: 2rem auto;
     padding: 20px;
     text-align: left;
 }
 
+/* ✅ 팝업 스타일 */
 .popup-container {
     display: none;
     position: fixed;
@@ -146,29 +112,116 @@ iframe {
     text-align: center;
 }
 
-.popup-content img {
-    width: 100%;
-    height: auto;
-}
-
-/* ✅ static/css/style.css에 추가 */
-.about-container {
-    max-width: 1000px;
-    margin: 2rem auto;
-  }
-  
-  .about-container iframe {
-    width: 100%;
-    height: 900px;
-    border: none;
-  }  
-/* 모바일 화면 최적화 */
+/* ✅ 모바일 화면 최적화 */
 @media screen and (max-width: 768px) {
-    .iframe-container {
-        max-width: 100%;
+    body {
+        font-size: 18px;
+        line-height: 1.8;
+    }
+
+    .summary-cards {
+        display: block !important;
+        text-align: center;
+    }
+
+    .summary-cards .card {
+        width: 100% !important;
+        margin-bottom: 1.5rem;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0.8rem;
+    }
+
+    .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .nav-links a {
+        font-size: 0.9rem;
+        margin: 5px 10px;
+    }
+
+    main {
+        padding: 1rem;
+        max-width: 95%;
+        font-size: 1rem;
+    }
+
+    footer {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        padding: 1rem;
+    }
+
+    .about-container, .doctor-frame-container, .notices-container, .notice-detail {
+        max-width: 95% !important;
         padding: 0 10px;
     }
-    iframe {
-        height: 500px;
+
+    .about-container iframe, .doctor-frame-container iframe {
+        width: 100% !important;
+        height: 600px !important;
+        border-radius: 8px;
+    }
+}
+/* ✅ 공지사항 페이지 전용 스타일 */
+.notices-container, .notice-detail {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 15px;
+    text-align: left;
+}
+
+/* ✅ 공지사항 목록의 여백 조정 */
+.notices-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notices-container li {
+    padding: 0.6rem 0; /* 기존보다 여백 줄이기 */
+    border-bottom: 1px solid #ddd;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* ✅ 공지사항 제목 강조 */
+.notices-container a {
+    text-decoration: none;
+    color: #008080;
+    font-weight: bold;
+    display: block;
+}
+
+/* ✅ 공지사항 날짜 스타일 */
+.notices-container span {
+    font-size: 0.85rem;
+    color: gray;
+}
+
+/* ✅ 푸터와 본문 사이 공백 제거 (공지사항 페이지 전용) */
+.notices-container {
+    min-height: auto;
+    padding-bottom: 2rem;
+}
+
+/* ✅ 모바일 화면 최적화 (공지사항 전용) */
+@media screen and (max-width: 768px) {
+    .notices-container, .notice-detail {
+        max-width: 95%;
+        padding: 0 10px;
+    }
+
+    .notices-container li {
+        font-size: 0.95rem;
+        padding: 0.5rem 0; /* 모바일에서는 여백 더 줄이기 */
     }
 }

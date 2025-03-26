@@ -2,11 +2,12 @@
 
 {% block content %}
 <h1>공지사항</h1>
-<div style="max-width: 800px; margin: 2rem auto; text-align: left;">
+<div style="max-width: 900px; margin: 2rem auto; padding: 0 20px; text-align: left; font-size: 1.3rem; line-height: 1.6;">
+
   <ul style="list-style: none; padding: 0;">
     {% for n in notices %}
       <li style="margin-bottom: 1.2rem; border-bottom: 1px solid #eee; padding-bottom: 0.7rem;">
-        <a href="/notices/{{ n['ID'] }}" style="text-decoration: none; color: #008080; font-weight: bold;">
+        <a href="/notices/{{ n['ID'] }}" style="text-decoration: none; color: #005f5f; font-weight: bold; font-size: 1.4rem;">
           {% if n['상단고정'] %}
             📌 
           {% endif %}

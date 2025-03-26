@@ -5,35 +5,37 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
 <div class="container">
-  <h1>푸른솔 정신건강의학과에 오신 것을 환영합니다</h1>
+  <h1>푸른솔 정신건강의학과에<br> 오신 것을 환영합니다</h1>
   <p>다시금 되찾을 당신의 일상을 응원합니다.</p>
 
-  <!-- ✅ 진료 요약 카드 -->
-  <div class="summary-cards">
-      <div class="card">
-          <h3>진료 과목</h3>
-          <p>우울증</p>
-          <p>불안장애</p>
-          <p>ADHD</p>
-          <p>스트레스</p>
-          <p>공황장애</p>
-          <p>불면증 등</p>
-      </div>
-      <div class="card">
-          <h3>진료 시간</h3>
-          <p>
-              월, 금 : 10:00 ~ 19:00<br>
-              화, 목 : 10:00 ~ 20:00<br>
-              토요일 : 10:00 ~ 13:00<br>
-              수, 일, 공휴일 휴진
-          </p>
-      </div>
-  </div>
+  <div class="summary-section">
+    <div class="card">
+        <h3>진료 과목</h3>
+        <p>우울증</p>
+        <p>불안장애</p>
+        <p>ADHD</p>
+        <p>스트레스</p>
+        <p>공황장애</p>
+        <p>불면증 등</p>
+    </div>
+</div>
+
+<div class="summary-section">
+    <div class="card">
+        <h3>진료 시간</h3>
+        <p>
+            월, 금 : 10:00 ~ 19:00<br>
+            화, 목 : 10:00 ~ 20:00<br>
+            토요일 : 10:00 ~ 13:00<br>
+            수, 일, 공휴일 휴진
+        </p>
+    </div>
+</div>
 
   <!-- ✅ 재진 예약 안내 -->
   <div class="reservation">
       <h3>재진 예약 안내</h3>
-      <p>아임파인 앱을 통해 재진 예약이 가능합니다. 아래 QR 코드를 통해 앱을 설치해주세요.</p>
+      <p>아임파인 앱을 통해 재진 예약이 가능합니다. <br>아래 QR 코드를 통해 앱을 설치해주세요.</p>
       <div class="qr-container">
           <div>
               <p>📱 Android</p>
@@ -51,7 +53,7 @@
       <h3>오시는 길</h3>
       <p>
           서울시 구로구 디지털로 285<br>
-          에이스 트윈타워 (태평양물산 맞은편) 1차 203호 푸른솔 정신건강의학과<br>
+          에이스 트윈타워 (태평양물산 맞은편)<br> 1차 203호 푸른솔 정신건강의학과<br>
           주차 가능
       </p>
       <div id="map"></div> <!-- ✅ 중복된 지도 제거 -->
