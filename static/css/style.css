@@ -56,29 +56,14 @@ h3 {
     margin-top: 1rem;
 }
 
-/* ✅ 의료진 소개 페이지 iframe 높이 자동 조정 */
-.doctor-frame-container iframe {
+/* ✅ Google Docs iframe 높이 자동 조정 */
+.iframe-container iframe, .doctor-frame-container iframe {
     width: 100%;
     height: auto !important;
-    min-height: 700px; /* 최소 높이 설정 */
+    min-height: 800px;
     border: none;
     display: block;
     margin: auto;
-}
-
-.iframe-container iframe {
-    width: 100%;
-    height: auto !important;
-    min-height: 600px; /* 기본 높이 유지 */
-    border: none;
-    display: block;
-    margin: auto;
-}
-iframe {
-    width: 100%;
-    height: 700px;
-    border: none;
-    border-radius: 8px;
 }
 
 /* ✅ 공지사항 스타일 */
@@ -89,33 +74,45 @@ iframe {
     text-align: left;
 }
 
-/* ✅ 팝업 스타일 */
-.popup-container {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    justify-content: center;
-    align-items: center;
+/* ✅ 공지사항 목록의 여백 조정 */
+.notices-container ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.popup-content {
-    max-width: 90%;
-    max-height: 90vh;
-    overflow: auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
+.notices-container li {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #ddd;
+    font-size: 1.3rem;
+    line-height: 1.8;
+}
+
+/* ✅ 공지사항 제목 강조 */
+.notices-container a {
+    text-decoration: none;
+    color: #008080;
+    font-weight: bold;
+    font-size: 1.5rem;
+    display: block;
+}
+
+/* ✅ 공지사항 날짜 스타일 */
+.notices-container span {
+    font-size: 1.1rem;
+    color: gray;
+}
+
+/* ✅ 푸터와 본문 사이 공백 제거 */
+.notices-container {
+    min-height: auto;
+    padding-bottom: 2rem;
 }
 
 /* ✅ 모바일 화면 최적화 */
 @media screen and (max-width: 768px) {
     body {
-        font-size: 18px;
+        font-size: 1.5rem;
         line-height: 1.8;
     }
 
@@ -144,18 +141,18 @@ iframe {
     }
 
     .nav-links a {
-        font-size: 0.9rem;
+        font-size: 1.2rem;
         margin: 5px 10px;
     }
 
     main {
         padding: 1rem;
         max-width: 95%;
-        font-size: 1rem;
+        font-size: 1.5rem;
     }
 
     footer {
-        font-size: 0.9rem;
+        font-size: 1.2rem;
         line-height: 1.5;
         padding: 1rem;
     }
@@ -164,64 +161,16 @@ iframe {
         max-width: 95% !important;
         padding: 0 10px;
     }
-
-    .about-container iframe, .doctor-frame-container iframe {
-        width: 100% !important;
-        height: 600px !important;
-        border-radius: 8px;
-    }
-}
-/* ✅ 공지사항 페이지 전용 스타일 */
-.notices-container, .notice-detail {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 15px;
-    text-align: left;
-}
-
-/* ✅ 공지사항 목록의 여백 조정 */
-.notices-container ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.notices-container li {
-    padding: 0.6rem 0; /* 기존보다 여백 줄이기 */
-    border-bottom: 1px solid #ddd;
-    font-size: 1rem;
-    line-height: 1.5;
-}
-
-/* ✅ 공지사항 제목 강조 */
-.notices-container a {
-    text-decoration: none;
-    color: #008080;
-    font-weight: bold;
+    /* ✅ Google Docs에서 불러온 내용도 자동 확대 */
+.iframe-container iframe, .doctor-frame-container iframe {
+    width: 100%;
+    height: auto !important;
+    min-height: 800px;
+    border: none;
     display: block;
+    margin: auto;
+    zoom: 1.5; /* Google Docs 글씨도 1.5배 확대 */
+    transform: scale(1.5); /* 확대 효과 */
+    transform-origin: top left; /* 확대 기준점 설정 */
 }
-
-/* ✅ 공지사항 날짜 스타일 */
-.notices-container span {
-    font-size: 0.85rem;
-    color: gray;
-}
-
-/* ✅ 푸터와 본문 사이 공백 제거 (공지사항 페이지 전용) */
-.notices-container {
-    min-height: auto;
-    padding-bottom: 2rem;
-}
-
-/* ✅ 모바일 화면 최적화 (공지사항 전용) */
-@media screen and (max-width: 768px) {
-    .notices-container, .notice-detail {
-        max-width: 95%;
-        padding: 0 10px;
-    }
-
-    .notices-container li {
-        font-size: 0.95rem;
-        padding: 0.5rem 0; /* 모바일에서는 여백 더 줄이기 */
-    }
 }
