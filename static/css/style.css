@@ -1,0 +1,174 @@
+body {
+    font-family: 'NanumSquareRound', sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: left; /* 중앙 정렬 제거 */
+    line-height: 1.6; /* 가독성 향상 */
+}
+
+/* ✅ 전체 페이지 중앙 정렬 */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;  /* 전체 내용을 가운데 정렬 */
+}
+
+/* ✅ 진료 과목 및 진료 시간 카드 디자인 */
+.summary-cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+}
+
+.card {
+    flex: 1;
+    min-width: 280px;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
+/* ✅ 제목 크기 증가 */
+h3 {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+/* ✅ 진료 과목 및 시간 폰트 크기 조정 */
+.card ul, .card p {
+    font-size: 1.1rem;
+}
+
+/* ✅ QR 코드 정렬 */
+.qr-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 1rem;
+}
+
+/* ✅ 지도 스타일 */
+#map {
+    width: 100%;
+    height: 400px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-top: 1rem;
+}
+
+.treatment-content {
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: left;
+}
+
+.treatment-content img {
+    display: block;
+    margin: 0 auto; /* 이미지 중앙 정렬 */
+    max-width: 100%;
+    height: auto;
+}
+
+.iframe-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+iframe {
+    width: 100%;
+    height: 700px;
+    border: none;
+    border-radius: 8px;
+}
+
+/* ✅ static/css/style.css에 추가 */
+.doctor-tabs {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .doctor-tab {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    text-decoration: none;
+    color: #008080;
+    border: none;
+    background: none;
+    transition: color 0.3s;
+  }
+  
+  .doctor-tab:hover, .doctor-tab.active {
+    border-bottom: 2px solid #008080;
+  }
+  #calendar {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 20px;
+}
+
+.notices-container {
+    max-width: 900px;
+    margin: 2rem auto;
+    padding: 20px;
+    text-align: left;
+}
+
+.popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-content {
+    max-width: 90%;
+    max-height: 90vh;
+    overflow: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.popup-content img {
+    width: 100%;
+    height: auto;
+}
+
+/* ✅ static/css/style.css에 추가 */
+.about-container {
+    max-width: 1000px;
+    margin: 2rem auto;
+  }
+  
+  .about-container iframe {
+    width: 100%;
+    height: 900px;
+    border: none;
+  }  
+/* 모바일 화면 최적화 */
+@media screen and (max-width: 768px) {
+    .iframe-container {
+        max-width: 100%;
+        padding: 0 10px;
+    }
+    iframe {
+        height: 500px;
+    }
+}

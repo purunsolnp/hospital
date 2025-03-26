@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 style="text-align: center;">진료 안내</h1>
+<div id="popup" class="popup-container" onclick="closePopup()">
+    <div class="popup-content">
+        <img src="{{ url_for('static', filename='images/imfine.jpg') }}" alt="아임파인 안내">
+    </div>
+</div>
+
+<!-- ✅ 초진/재진 탭 -->
+<div class="tab-container">
+    <button class="tab-button active" onclick="showTab('first-visit')">초진 안내</button>
+    <button class="tab-button" onclick="showTab('follow-up')">재진 안내</button>
+</div>
+
+<!-- ✅ 초진 안내 -->
+<div id="first-visit" class="tab-content active">
+    <section class="treatment-process">
+        <h2>🩺 초진 절차</h2>
+        <div class="process-steps">
+            <div class="step">📋 접수 & 초진기록지 작성</div>
+            <div class="arrow">⬇️</div>
+            <div class="step">🏥 진료 및 상담</div>
+            <div class="arrow">⬇️</div>
+            <div class="step">🧪 검사 진행 (심리검사, 종합심리검사, 뇌파, 스트레스 검사 등)</div>
+            <div class="arrow">⬇️</div>
+            <div class="step">📑 치료 계획 수립</div>
+        </div>
+        <p>기본적으로 <strong>예약제</strong>로 운영되며, 다소 대기 시간이 발생할 수 있습니다.</p>
+    </section>
+    <section class="reservation">
+        <h2>📌 초진 예약 방법</h2>
+        <p><strong>전화 예약 필수:</strong> <a href="tel:028565557">☎ 02-856-5557</a></p>
+        <p><strong>신분증 지참 필수:</strong> 초진 시 신원 확인을 위해 필요합니다.</p>
+    </section>
+</div>
+
+<!-- ✅ 재진 안내 -->
+<div id="follow-up" class="tab-content">
+    <section class="reservation">
+        <h2>🔄 재진 안내</h2>
+        <p><strong>재진 예약 방법:</strong> 전화 또는 <a href="#" onclick="showPopup()">아임파인(IMFINE)</a> 어플 이용</p>
+    </section>
+</div>
+
+<!-- ✅ 건강보험 안내 -->
+<section class="insurance">
+    <h2>💳 건강보험 안내</h2>
+    <p>모든 진료는 건강보험 적용 가능하며, 일부 검사 및 치료 항목은 비급여로 운영됩니다.</p>
+</section>
+
+<!-- ✅ 자주 묻는 질문 (FAQ) -->
+<section class="faq">
+    <h2>❓ 자주 묻는 질문</h2>
+    <div class="faq-item">
+        <p><strong>📌 초진 시 꼭 예약해야 하나요?</strong></p>
+        <p>필수는 아니지만만, 전화 예약 후 방문할 것을 권장합니다(당일 접수시 대기 시간이 길어질 수 있습니다).</p>
+    </div>
+    <div class="faq-item">
+        <p><strong>📌 초진 시 신분증이 필요한가요?</strong></p>
+        <p>네, 신분증을 반드시 지참해야 합니다.</p>
+    </div>
+    <div class="faq-item">
+        <p><strong>📌 재진 예약은 어떻게 하나요?</strong></p>
+        <p>전화 또는 <a href="#" onclick="showPopup()">아임파인(IMFINE)</a> 어플에서 예약 가능합니다.</p>
+    </div>
+    <div class="faq-item">
+        <p><strong>📌 정신과 진료 기록이 남나요?</strong></p>
+        <p>모든 기록은 일반 진료 기록과 동일하게 보호되며 본인 외 그 누구도 열람하거나 조회할 수 없습니다다.</p>
+    </div>
+</section>
+
+<!-- ✅ 스타일 개선 -->
+<style>
+    .tab-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    .tab-button {
+        padding: 10px 20px;
+        margin: 0 5px;
+        border: none;
+        background-color: #f0f0f0;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .tab-button.active {
+        background-color: #008080;
+        color: white;
+    }
+    .tab-content {
+        display: none;
+        text-align: center;
+    }
+    .tab-content.active {
+        display: block;
+    }
+    .faq-item {
+        margin-bottom: 20px;
+        padding: 15px;
+        background: #f8f8f8;
+        border-radius: 8px;
+    }
+    .faq-item p {
+        margin: 5px 0;
+    }
+</style>
+
+<!-- ✅ JavaScript (탭 전환 기능 & 팝업 기능) -->
+<script>
+    function showTab(tabId) {
+        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        
+        document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
+        document.querySelector(`[onclick="showTab('${tabId}')"]`).classList.add('active');
+    }
+
+    function showPopup() {
+        document.getElementById("popup").style.display = "flex";
+    }
+    function closePopup() {
+        document.getElementById("popup").style.display = "none";
+    }
+</script>
+
+{% endblock %}

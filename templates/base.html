@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>푸른솔 정신건강의학과</title>
+    <link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" rel="stylesheet"> 
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block styles %}{% endblock %}
+    <style>
+      body {
+        margin: 0;
+        font-family: 'NanumSquareRound', sans-serif;
+        color: #333;
+      }
+      
+      .header {
+        background-color: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        border-bottom: 1px solid #ddd;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+  
+      .header img {
+        height: 75px;
+      }
+  
+      .nav-links a {
+        margin-left: 1.5rem;
+        text-decoration: none;
+        color: #333;
+        font-size: 1rem;
+        transition: color 0.2s;
+      }
+  
+      .nav-links a:hover {
+        color: #008080;
+      }
+  
+      main {
+        padding: 2rem;
+        max-width: 1000px;
+        margin: 0 auto;
+        text-align: left;
+      }
+  
+      footer {
+        background: #f8f8f8;
+        text-align: center;
+        padding: 1.5rem;
+        font-size: 0.85rem;
+        color: #666;
+      }
+    </style>
+  </head>
+<body>
+
+<!-- 헤더 -->
+<div class="header">
+  <div class="logo">
+    <a href="/">
+      <img src="{{ url_for('static', filename='images/logo-horizontal.png') }}" alt="푸른솔 로고">
+    </a>
+  </div>
+  <div class="nav-links">
+    <a href="/">홈</a>
+    <a href="/about">의료진 소개</a>
+    <a href="/treatments">진료과목</a>
+    <a href="/guide">진료안내</a>
+    <a href="/notices">공지사항</a>
+    <a href="/laws">이용안내</a>
+    <a href="/calendar">달력</a>
+    </div>
+</div>
+
+<!-- 본문 -->
+<main>
+  {% block content %}{% endblock %}
+</main>
+
+<!-- 푸터 -->
+<footer>
+  © 2025 푸른솔 정신건강의학과 | 서울특별시 구로구 디지털로 285 에이스트윈타워 1차 203호 | Tel: 02-856-5557 | Fax: 02-859-5558<p>
+  대표 원장 : 전한솔 | 사업자 등록번호 : 615-92-01674 | 본 홈페이지는 의료법을 준수하여 운영되며, 의료 광고 심의를 받지 않은 의료광고를 포함하지 않습니다.
+  </p>
+</footer>
+
+</body>
+</html>

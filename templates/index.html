@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- ✅ CSS 및 파비콘 -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+<div class="container">
+  <h1>푸른솔 정신건강의학과에 오신 것을 환영합니다</h1>
+  <p>다시금 되찾을 당신의 일상을 응원합니다.</p>
+
+  <!-- ✅ 진료 요약 카드 -->
+  <div class="summary-cards">
+      <div class="card">
+          <h3>진료 과목</h3>
+          <p>우울증</p>
+          <p>불안장애</p>
+          <p>ADHD</p>
+          <p>스트레스</p>
+          <p>공황장애</p>
+          <p>불면증 등</p>
+      </div>
+      <div class="card">
+          <h3>진료 시간</h3>
+          <p>
+              월, 금 : 10:00 ~ 19:00<br>
+              화, 목 : 10:00 ~ 20:00<br>
+              토요일 : 10:00 ~ 13:00<br>
+              수, 일, 공휴일 휴진
+          </p>
+      </div>
+  </div>
+
+  <!-- ✅ 재진 예약 안내 -->
+  <div class="reservation">
+      <h3>재진 예약 안내</h3>
+      <p>아임파인 앱을 통해 재진 예약이 가능합니다. 아래 QR 코드를 통해 앱을 설치해주세요.</p>
+      <div class="qr-container">
+          <div>
+              <p>📱 Android</p>
+              <img src="{{ url_for('static', filename='images/imfine_google_qr.png') }}" width="120">
+          </div>
+          <div>
+              <p>🍎 iOS</p>
+              <img src="{{ url_for('static', filename='images/imfine_apple_qr.png') }}" width="120">
+          </div>
+      </div>
+  </div>
+
+  <!-- ✅ 오시는 길 -->
+  <div class="location">
+      <h3>오시는 길</h3>
+      <p>
+          서울시 구로구 디지털로 285<br>
+          에이스 트윈타워 (태평양물산 맞은편) 1차 203호 푸른솔 정신건강의학과<br>
+          주차 가능
+      </p>
+      <div id="map"></div> <!-- ✅ 중복된 지도 제거 -->
+  </div>
+</div>
+
+
+
+<!-- ✅ 카카오 지도 API -->
+<script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey={{ kakao_api_key }}&autoload=false"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    console.log("📌 카카오 지도 API 로드 시작");
+
+    // ✅ 카카오 API 로드 확인
+    if (typeof kakao === "undefined") {
+      console.error("❌ 카카오 API가 로드되지 않았습니다.");
+      return;
+    }
+
+    kakao.maps.load(function() {
+      var container = document.getElementById('map');
+      var options = {
+        center: new kakao.maps.LatLng(37.485143, 126.895789),
+        level: 3
+      };
+
+      var map = new kakao.maps.Map(container, options);
+      console.log("✅ 지도 로드 완료");
+    });
+  });
+</script>
+{% endblock %}

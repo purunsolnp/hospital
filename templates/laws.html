@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1 style="text-align: center;">이용 안내</h1>
+
+<!-- ✅ 개인정보 처리방침 / 비급여 안내 탭 -->
+<div class="tab-container">
+    <button class="tab-button active" onclick="showTab('privacy-policy')">개인정보 처리방침</button>
+    <button class="tab-button" onclick="showTab('non-insurance')">비급여 안내</button>
+</div>
+
+<!-- ✅ 개인정보 처리방침 -->
+<div id="privacy-policy" class="tab-content active">
+    <section class="policy-section">
+        <h2>🔒 개인정보 처리방침</h2>
+        <p>푸른솔 정신건강의학과(이하 ‘본 병원’)는 개인정보 보호를 중요하게 생각하며, 관련 법령을 준수하고 있습니다.</p>
+        <p>
+            <p>본 병원은 방문자의 개인정보를 직접 수집하지 않습니다.</p>
+            <p>홈페이지 이용 시 자동으로 수집될 수 있는 정보: IP 주소, 브라우저 정보, 방문 일시</p>
+            <p>수집된 정보는 홈페이지 운영 및 서비스 개선 목적으로 사용됩니다.</p>
+            <p>개인정보 제공 및 위탁처리는 하지 않으며, 법적 요구가 있을 경우에만 제공됩니다.</p>
+            <p>개인정보 보호를 위한 보안 조치: SSL 적용, 네트워크 보안 강화</p>
+        </p>
+        <p>자세한 내용은 본 병원의 <a href="/privacy-policy">개인정보처리방침 전문</a>을 참고하시기 바랍니다.</p>
+    </section>
+</div>
+
+<!-- ✅ 비급여 안내 -->
+<div id="non-insurance" class="tab-content">
+    <section class="non-insurance-section">
+        <h2>비급여 안내</h2>
+        <p>본원에서 제공하는 비급여 진료 항목에 대한 상세 정보는 아래 이미지를 참고해 주세요.</p>
+        <div class="image-container">
+            <img src="/static/images/non_insurance.png" alt="비급여 진료 항목 안내">
+        </div>
+    </section>
+</div>
+
+<!-- ✅ 스타일 개선 -->
+<style>
+    .tab-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    .tab-button {
+        padding: 10px 20px;
+        margin: 0 5px;
+        border: none;
+        background-color: #f0f0f0;
+        cursor: pointer;
+        font-size: 16px;
+    }
+    .tab-button.active {
+        background-color: #008080;
+        color: white;
+    }
+    .tab-content {
+        display: none;
+        text-align: center;
+    }
+    .tab-content.active {
+        display: block;
+    }
+    .policy-section, .non-insurance-section {
+        padding: 20px;
+        background: #f8f8f8;
+        border-radius: 8px;
+    }
+    .image-container img {
+        max-width: 100%;
+        height: auto;
+    }
+</style>
+
+<!-- ✅ JavaScript (탭 전환 기능) -->
+<script>
+    function showTab(tabId) {
+        document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+        document.getElementById(tabId).classList.add('active');
+        
+        document.querySelectorAll('.tab-button').forEach(button => button.classList.remove('active'));
+        document.querySelector(`[onclick="showTab('${tabId}')"]`).classList.add('active');
+    }
+</script>
+
+{% endblock %}

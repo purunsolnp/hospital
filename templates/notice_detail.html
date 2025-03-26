@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 2rem auto; text-align: left;">
+  <h2 style="margin-bottom: 0.5rem;">{{ notice['제목'] }}</h2>
+  <p style="color: #888; font-size: 0.9rem;">{{ notice['날짜'] }}</p>
+  <div style="margin-top: 1.5rem; white-space: pre-wrap; line-height: 1.6;">
+    {{ notice['내용'] }}
+  </div>
+  <div style="margin-top: 2rem;">
+    <a href="/notices" style="color: #008080;">← 목록으로 돌아가기</a>
+  </div>
+</div>
+{% endblock %}

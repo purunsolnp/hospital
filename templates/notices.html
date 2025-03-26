@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>공지사항</h1>
+<div style="text-align: left; max-width: 800px; margin: 2rem auto;">
+  {% for notice in notices %}
+    <div style="margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid #ddd;">
+      <h3 style="margin-bottom: 0.3rem;">📌 {{ notice['제목'] }}</h3>
+      <p style="white-space: pre-wrap;">{{ notice['내용'] }}</p>
+      {% if notice['날짜'] and notice['날짜'] != 'NaT' %}
+        <p style="font-size: 0.9rem; color: #888;">{{ notice['날짜_문자열'] }}</p>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}
