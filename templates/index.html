@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- ✅ CSS 및 파비콘 -->
-<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
-
 <div class="container">
+  <!-- 모바일 전용 로고 (선택 사항) -->
+  <div class="mobile-logo-wrapper">
+    <img src="{{ url_for('static', filename='images/logo-vertical.png') }}" alt="푸른솔 정신건강의학과 로고" class="mobile-logo">
+  </div>
+
   <h1>푸른솔 정신건강의학과에<br> 오신 것을 환영합니다</h1>
   <p>다시금 되찾을 당신의 일상을 응원합니다.</p>
 
-  <!-- ✅ 카드 2개를 summary-cards로 묶음 (모바일 세로 정렬 적용됨) -->
   <div class="summary-cards">
     <div class="card">
       <h3>진료 과목</h3>
@@ -32,10 +32,9 @@
     </div>
   </div>
 
-  <!-- ✅ 재진 예약 안내 -->
   <div class="reservation">
     <h3>재진 예약 안내</h3>
-    <p>아임파인 앱을 통해 재진 예약이 가능합니다. <br>아래 QR 코드를 통해 앱을 설치해주세요.</p>
+    <p>아임파인 앱을 통해 재진 예약이 가능합니다.<br>아래 QR 코드를 통해 앱을 설치해주세요.</p>
     <div class="qr-container">
       <div>
         <p>📱 Android</p>
@@ -48,38 +47,46 @@
     </div>
   </div>
 
-  <!-- ✅ 오시는 길 -->
   <div class="location">
     <h3>오시는 길</h3>
     <p>
       서울시 구로구 디지털로 285<br>
-      에이스 트윈타워 (태평양물산 맞은편)<br> 1차 203호 푸른솔 정신건강의학과<br>
-      주차 가능
+      에이스 트윈타워 1차 203호<br>
+      (태평양물산 맞은편, 주차 가능)
     </p>
     <div id="map"></div>
   </div>
 </div>
 
-<!-- ✅ 카카오 지도 API -->
+<!-- ✅ 카카오 지도 API + 마커 표시 -->
 <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey={{ kakao_api_key }}&autoload=false"></script>
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    console.log("📌 카카오 지도 API 로드 시작");
-
     if (typeof kakao === "undefined") {
       console.error("❌ 카카오 API가 로드되지 않았습니다.");
       return;
     }
 
     kakao.maps.load(function () {
-      var container = document.getElementById('map');
-      var options = {
-        center: new kakao.maps.LatLng(37.485143, 126.895789),
-        level: 3
+      const container = document.getElementById('map');
+      const options = {
+        center: new kakao.maps.LatLng(37.48427, 126.8949),
+        level: 2
       };
 
-      var map = new kakao.maps.Map(container, options);
-      console.log("✅ 지도 로드 완료");
+      const map = new kakao.maps.Map(container, options);
+
+      const markerPosition = new kakao.maps.LatLng(37.48427, 126.8949);
+
+      const marker = new kakao.maps.Marker({
+        position: markerPosition,
+        map: map
+      });
+
+      const infowindow = new kakao.maps.InfoWindow({
+        content: '<div style="width: 160px; height: 40px; padding:5px; font-size:20px; color:#2196F3; text-align: center; line-height: 40px;">🩺푸른솔 정신과</div>'      });
+
+      infowindow.open(map, marker);
     });
   });
 </script>
