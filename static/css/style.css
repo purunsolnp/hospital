@@ -1,4 +1,9 @@
-/* ✅ 기본 스타일 설정 */
+/* ✅ 모든 요소 box-sizing 설정 */
+* {
+    box-sizing: border-box;
+}
+
+/* ✅ 기본 폰트 및 정렬 */
 body {
     font-family: 'NanumSquareRound', sans-serif;
     margin: 0;
@@ -7,15 +12,15 @@ body {
     line-height: 1.6;
 }
 
-/* ✅ 전체 페이지 중앙 정렬 */
+/* ✅ 메인 컨테이너 */
 .container {
     max-width: 900px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 1rem 1.2rem;
     text-align: center;
 }
 
-/* ✅ 진료 과목 및 진료 시간 카드 디자인 */
+/* ✅ 진료 과목 및 진료 시간 카드 */
 .summary-cards {
     display: flex;
     justify-content: center;
@@ -27,13 +32,13 @@ body {
 .card {
     flex: 1;
     min-width: 280px;
-    padding: 1.5rem;
+    padding: 1.5rem 2rem;
     border: 1px solid #ddd;
     border-radius: 10px;
     background-color: #f9f9f9;
 }
 
-/* ✅ 제목 크기 조정 */
+/* ✅ 제목 크기 */
 h3 {
     font-size: 1.4rem;
     font-weight: bold;
@@ -47,7 +52,7 @@ h3 {
     margin-top: 1rem;
 }
 
-/* ✅ 지도 스타일 */
+/* ✅ 지도 */
 #map {
     width: 100%;
     height: 400px;
@@ -56,7 +61,7 @@ h3 {
     margin-top: 1rem;
 }
 
-/* ✅ Google Docs iframe 높이 자동 조정 */
+/* ✅ iframe (Google Docs) */
 .iframe-container iframe, .doctor-frame-container iframe {
     width: 100%;
     height: auto !important;
@@ -66,7 +71,7 @@ h3 {
     margin: auto;
 }
 
-/* ✅ 공지사항 스타일 */
+/* ✅ 공지사항 */
 .notices-container, .notice-detail {
     max-width: 900px;
     margin: 2rem auto;
@@ -74,7 +79,6 @@ h3 {
     text-align: left;
 }
 
-/* ✅ 공지사항 목록의 여백 조정 */
 .notices-container ul {
     list-style: none;
     padding: 0;
@@ -88,7 +92,6 @@ h3 {
     line-height: 1.8;
 }
 
-/* ✅ 공지사항 제목 강조 */
 .notices-container a {
     text-decoration: none;
     color: #008080;
@@ -97,25 +100,39 @@ h3 {
     display: block;
 }
 
-/* ✅ 공지사항 날짜 스타일 */
 .notices-container span {
     font-size: 1.1rem;
     color: gray;
 }
 
-/* ✅ 푸터와 본문 사이 공백 제거 */
-.notices-container {
-    min-height: auto;
-    padding-bottom: 2rem;
-}
+/* ✅ 모바일 반응형 스타일 */
+@media screen and (max-width: 1024px) {
+    html {
+        font-size: 18px;
+    }
 
-/* ✅ 모바일 화면 최적화 */
-@media screen and (max-width: 768px) {
     body {
-        font-size: 3rem;
+        font-size: 1.2rem;
         line-height: 1.8;
     }
 
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    h3 {
+        font-size: 1.4rem;
+    }
+
+    p, li, a, button, input, label, span, div {
+        font-size: 1.2rem;
+    }
+
+    /* ✅ 카드 모바일 정렬 */
     .summary-cards {
         display: block !important;
         text-align: center;
@@ -123,54 +140,66 @@ h3 {
 
     .summary-cards .card {
         width: 100% !important;
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
     }
 
-    .header {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        padding: 0.8rem;
+    /* ✅ 지도 높이 확대 */
+    #map {
+        height: 350px !important;
     }
-
-    .nav-links {
+    .mobile-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 1rem;
+        background: white;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 1rem;
+        z-index: 999;
+    }
+      
+      /* 메뉴 펼쳐졌을 때 */
+      .mobile-menu.active {
         display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 10px;
+        flex-direction: column;
+        gap: 0.8rem;
+        min-width: 160px;
     }
-
-    .nav-links a {
-        font-size: 1.5rem;
-        margin: 5px 10px;
+      
+      .mobile-menu a {
+        color: #333;
+        text-decoration: none;
+        font-size: 1rem;
     }
-
-    main {
+      
+      .mobile-menu a:hover {
+        color: #008080;
+    }
+    /* ✅ 로고 오른쪽 햄버거 메뉴 배치 */
+    .header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
         padding: 1rem;
-        max-width: 95%;
-        font-size: 1.5rem;
     }
 
-    footer {
-        font-size: 1.2rem;
-        line-height: 1.5;
-        padding: 1rem;
+    .logo {
+        text-align: left;
+        width: auto;
+        margin: 0;
     }
 
-    .about-container, .doctor-frame-container, .notices-container, .notice-detail {
-        max-width: 95% !important;
-        padding: 0 10px;
+    .logo img {
+        height: 75px;
+        max-width: 90%;
     }
-    /* ✅ Google Docs에서 불러온 내용도 자동 확대 */
-.iframe-container iframe, .doctor-frame-container iframe {
-    width: 100%;
-    height: auto !important;
-    min-height: 800px;
-    border: none;
-    display: block;
-    margin: auto;
-    zoom: 3; /* Google Docs 글씨도 1.5배 확대 */
-    transform: scale(3); /* 확대 효과 */
-    transform-origin: top left; /* 확대 기준점 설정 */
-}
+
+    .hamburger {
+        background: none;
+        border: none;
+        font-size: 2rem;
+        cursor: pointer;
+    }
 }
