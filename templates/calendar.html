@@ -27,7 +27,7 @@
         center: 'title',
         right: ''
       },
-      events: {{ events|tojson }}
+      events: {{ events|tojson|safe }}
     });
     calendar.render();
   });
@@ -38,6 +38,83 @@
   #calendar {
     max-width: 900px;
     margin: 2rem auto;
+  }
+  /* FullCalendar 기본 폰트 크기 및 이벤트 박스 높이 조정 */
+  .fc {
+    font-size: 1.05rem;
+  }
+  .fc-toolbar-title {
+    font-size: 1.5rem;
+  }
+  .fc-daygrid-day-number {
+    font-size: 1rem;
+  }
+  .fc-event, .fc-daygrid-event {
+    padding: 0 2px !important;
+    min-height: 0 !important;
+    line-height: 1 !important;
+    border-radius: 6px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    height: auto !important;
+    vertical-align: middle;
+  }
+  .fc-event-main, .fc-event-title-container {
+    padding: 0 !important;
+    margin: 0 !important;
+    line-height: 1 !important;
+    height: auto !important;
+    display: flex;
+    align-items: center;
+  }
+  .fc-event-title {
+    font-size: 0.98rem;
+    line-height: 1 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    height: auto !important;
+    display: flex;
+    align-items: center;
+  }
+  @media (max-width: 768px) {
+    .fc {
+      font-size: 0.88rem;
+    }
+    .fc-toolbar-title {
+      font-size: 1.05rem;
+    }
+    .fc-daygrid-day-number {
+      font-size: 0.8rem;
+    }
+    .fc-event-title {
+      font-size: 0.7rem;
+    }
+    .fc-event, .fc-daygrid-event {
+      padding: 0 1px !important;
+      min-height: unset;
+      line-height: 1.1;
+    }
+  }
+  @media (max-width: 480px) {
+    .fc {
+      font-size: 0.8rem;
+    }
+    .fc-toolbar-title {
+      font-size: 0.9rem;
+    }
+    .fc-daygrid-day-number {
+      font-size: 0.65rem;
+    }
+    .fc-event-title {
+      font-size: 0.62rem;
+      line-height: 1.02;
+    }
+    .fc-event, .fc-daygrid-event {
+      padding: 0 1px;
+      min-height: unset;
+      line-height: 1.05;
+    }
   }
 </style>
 {% endblock %}
