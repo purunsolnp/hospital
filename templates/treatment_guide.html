@@ -24,34 +24,30 @@
             <h2>진료 절차</h2>
             <div class="process-flow">
                 <div class="process-step">
-                    <div class="step-icon">📋</div>
                     <div class="step-content">
                         <h4>접수 & 기록지 작성</h4>
-                        <p>초진기록지 작성 및 기본 정보 확인</p>
+                        <p>초진 기록지 작성<br>기본 정보 확인</p>
                     </div>
                 </div>
                 <div class="step-arrow">⬇️</div>
                 <div class="process-step">
-                    <div class="step-icon">🏥</div>
                     <div class="step-content">
                         <h4>진료 및 상담</h4>
-                        <p>의료진과의 상세한 상담 진행</p>
+                        <p>의료진과의<br>상세한 상담</p>
                     </div>
                 </div>
                 <div class="step-arrow">⬇️</div>
                 <div class="process-step">
-                    <div class="step-icon">🧪</div>
                     <div class="step-content">
                         <h4>검사 진행</h4>
-                        <p>심리검사, 종합심리검사, 뇌파, 스트레스 검사 등</p>
+                        <p>심리검사, 종합심리검사,<br>뇌파, 스트레스 검사 등</p>
                     </div>
                 </div>
                 <div class="step-arrow">⬇️</div>
                 <div class="process-step">
-                    <div class="step-icon">📑</div>
                     <div class="step-content">
                         <h4>치료 계획 수립</h4>
-                        <p>개인 맞춤형 치료 계획 수립</p>
+                        <p>개인 맞춤형<br>치료 계획 수립</p>
                     </div>
                 </div>
             </div>
@@ -62,12 +58,12 @@
             <h2>📞 예약 안내</h2>
             <div class="info-grid">
                 <div class="info-card">
-                    <h4>☎️ 전화 예약</h4>
+                    <h4>전화 예약</h4>
                     <p><a href="tel:028565557">02-856-5557</a></p>
                     <small>예약제 운영 (권장)</small>
                 </div>
                 <div class="info-card">
-                    <h4>🆔 신분증 지참</h4>
+                    <h4>신분증 지참</h4>
                     <p>초진 시 필수</p>
                     <small>신원 확인용</small>
                 </div>
@@ -83,11 +79,11 @@
             <h2>🔄 재진 예약</h2>
             <div class="info-grid">
                 <div class="info-card">
-                    <h4>☎️ 전화 예약</h4>
+                    <h4>전화 예약</h4>
                     <p><a href="tel:028565557">02-856-5557</a></p>
                 </div>
                 <div class="info-card">
-                    <h4>📱 앱 예약</h4>
+                    <h4>앱 예약</h4>
                     <p><a href="#" onclick="showPopup()">아임파인(IMFINE)</a></p>
                     <small>QR코드로 앱 설치</small>
                 </div>
@@ -170,7 +166,7 @@
         padding: 1.5rem;
         border-radius: 10px;
         width: 100%;
-        max-width: 500px;
+        max-width: 100%;
         border-left: 4px solid #008080;
     }
 
@@ -320,26 +316,6 @@
         position: relative;
     }
 
-    .tab-button {
-        padding: 12px 24px;
-        margin: 0 5px;
-        border: none;
-        background-color: #f0f0f0;
-        cursor: pointer;
-        font-size: 1rem;
-        border-radius: 5px;
-        transition: all 0.3s ease;
-    }
-
-    .tab-button:hover {
-        background-color: #e0e0e0;
-    }
-
-    .tab-button.active {
-        background-color: #008080;
-        color: white;
-    }
-
     .tab-content {
         display: none;
         text-align: center;
@@ -465,6 +441,27 @@
     .faq-item li,
     .faq-item ul {
       font-size: 1.2em !important;
+    }
+
+    .process-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 100%;
+    }
+    .step-content {
+      width: 100%;
+      max-width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .step-content h4,
+    .step-content p {
+      text-align: center;
     }
 </style>
 

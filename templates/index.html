@@ -94,6 +94,41 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   }
 
+  .phone-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
+  .phone-link {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 1rem 2rem;
+    background-color: #008080;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    font-size: 1.3rem;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+
+  .phone-link:hover {
+    background-color: #006666;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+
+  .phone-icon {
+    font-size: 1.5rem;
+  }
+
+  .phone-number {
+    font-size: 1.4rem;
+  }
+
   #map {
     width: 100%;
     height: 400px;
@@ -152,6 +187,15 @@
 
     .qr-container p {
       font-size: 0.95rem;
+    }
+
+    .phone-link {
+      font-size: 1.2rem;
+      padding: 0.8rem 1.5rem;
+    }
+
+    .phone-number {
+      font-size: 1.3rem;
     }
 
     #map {
@@ -217,6 +261,15 @@
       width: 120px;
     }
 
+    .phone-link {
+      font-size: 1.1rem;
+      padding: 0.7rem 1.2rem;
+    }
+
+    .phone-number {
+      font-size: 1.2rem;
+    }
+
     #map {
       height: 300px;
     }
@@ -270,6 +323,15 @@
       width: 100px;
     }
 
+    .phone-link {
+      font-size: 1rem;
+      padding: 0.6rem 1rem;
+    }
+
+    .phone-number {
+      font-size: 1.1rem;
+    }
+
     #map {
       height: 250px;
     }
@@ -306,6 +368,17 @@
         토요일 : 10:00 ~ 13:00<br>
         수, 일, 공휴일 휴진
       </p>
+    </div>
+  </div>
+
+  <div class="reservation">
+    <h3>초진 예약 안내</h3>
+    <p>초진 예약은 전화로만 가능합니다.<br>아래 번호를 클릭하여 예약해주세요.</p>
+    <div class="phone-container">
+      <a href="tel:0285655557" class="phone-link">
+        <span class="phone-icon">📞</span>
+        <span class="phone-number">02-856-5557</span>
+      </a>
     </div>
   </div>
 

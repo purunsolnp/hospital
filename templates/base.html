@@ -209,20 +209,95 @@
       }
 
       .header {
-        background-color: white;
+        background-color: #008080;
         display: flex;
-        justify-content: space-between;
+        justify-content: flex-start;
         align-items: center;
         padding: 1rem 2rem;
-        border-bottom: 1px solid #ddd;
+        border-bottom: none;
         position: sticky;
         top: 0;
         z-index: 1000;
-        /* 헤더 고정 위치 개선 */
         box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        /* 헤더 높이 고정 */
         height: 80px;
         box-sizing: border-box;
+        position: relative;
+      }
+      .logo {
+        display: flex;
+        align-items: center;
+      }
+      .desktop-only {
+        display: flex;
+      }
+      .mobile-only {
+        display: none;
+      }
+      .header-title {
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: center;
+        flex: 1;
+        letter-spacing: 0.02em;
+      }
+      .header-title.mobile-only {
+        color: #fff;
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: center;
+        flex: 1;
+        letter-spacing: 0.02em;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 100%;
+        pointer-events: none;
+        z-index: 1;
+      }
+      .hamburger {
+        display: block;
+        background: #fff;
+        color: #008080;
+        border: none;
+        border-radius: 50%;
+        width: 44px;
+        height: 44px;
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        cursor: pointer;
+        margin-left: 0;
+        margin-right: 1rem;
+        position: relative;
+        z-index: 2;
+      }
+      .hamburger-icon {
+        font-size: 2rem;
+        line-height: 1;
+        color: #fff;
+      }
+      @media screen and (max-width: 1024px) {
+        .logo.desktop-only {
+          display: none;
+        }
+        .header-title.mobile-only {
+          display: block;
+          flex: 1;
+        }
+        .header {
+          padding: 0.8rem 1rem;
+          height: 64px;
+        }
+      }
+      @media screen and (min-width: 1025px) {
+        .header-title.mobile-only {
+          display: none;
+        }
       }
 
       .header img {
@@ -288,20 +363,21 @@
         /* 모바일 메뉴 위치 고정 */
         position: absolute;
         top: 100%;
-        right: 0;
+        left: 0;
+        right: auto;
         background: white;
         border: 1px solid #ddd;
         border-radius: 8px;
-        padding: 1rem;
+        padding: 1.5rem;
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        min-width: 200px;
+        min-width: 220px;
       }
 
       .mobile-menu a {
-        font-size: 1.1rem;
+        font-size: 1.5rem;
         text-decoration: none;
         color: #333;
-        padding: 0.8rem 0;
+        padding: 1.2rem 0;
         /* 링크 높이 고정 */
         line-height: 1.2;
         font-weight: 500;
@@ -391,15 +467,19 @@
 
 <!-- 헤더 -->
 <div class="header">
-  <div class="logo">
+  <!-- 데스크탑 로고 및 병원명(1024px 초과에서만 보임) -->
+  <div class="logo desktop-only">
     <a href="/">
       <img src="{{ url_for('static', filename='images/logo-horizontal.png') }}" alt="푸른솔 로고">
     </a>
   </div>
-
+  <div class="header-title mobile-only">
+    푸른솔 정신건강의학과
+  </div>
   <!-- 햄버거 버튼 -->
-  <button class="hamburger" onclick="toggleMenu()">☰</button>
-
+  <button class="hamburger" onclick="toggleMenu()">
+    <span class="hamburger-icon">☰</span>
+  </button>
   <!-- 데스크탑 메뉴 -->
   <div class="nav-links">
     <a href="/">홈</a>
@@ -410,7 +490,6 @@
     <a href="/laws">이용안내</a>
     <a href="/calendar">달력</a>
   </div>
-
   <!-- 모바일 메뉴 -->
   <div id="mobileMenu" class="mobile-menu">
     <a href="/">홈</a>
