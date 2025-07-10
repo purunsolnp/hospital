@@ -5,9 +5,10 @@
 
 <!-- 아임파인 팝업 -->
 <div id="popup" class="popup-container" onclick="closePopup()">
-    <div class="popup-content">
-        <img src="{{ url_for('static', filename='images/imfine.jpg') }}" alt="아임파인 안내">
-    </div>
+  <div class="popup-content" onclick="event.stopPropagation()" style="position:relative;">
+    <button onclick="closePopup()" style="position:absolute; top:10px; right:10px; background:none; border:none; font-size:1.7rem; cursor:pointer; color:#888;">✕</button>
+    <img src="{{ url_for('static', filename='images/imfine.jpg') }}" alt="아임파인 안내">
+  </div>
 </div>
 
 <!-- 초진/재진 탭 -->
@@ -122,6 +123,25 @@
             </div>
         </div>
     </section>
+</div>
+
+<div class="qr-container">
+  <div style="text-align:center;">
+    <p>📱 Android</p>
+    <img src="{{ url_for('static', filename='images/imfine_google_qr.png') }}" width="120">
+    <br>
+    <a href="https://play.google.com/store/apps/details?id=io.lokks.careease&hl=ko" target="_blank" style="display:inline-flex;align-items:center;margin-top:0.5em;color:#008080;font-weight:bold;text-decoration:none;font-size:1.1rem;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" style="height:24px;margin-right:6px;">다운로드
+    </a>
+  </div>
+  <div style="text-align:center;">
+    <p>🍎 iOS</p>
+    <img src="{{ url_for('static', filename='images/imfine_apple_qr.png') }}" width="120">
+    <br>
+    <a href="https://apps.apple.com/kr/app/%EC%95%84%EC%9E%84%ED%8C%8C%EC%9D%B8-im-fine/id1573100943" target="_blank" style="display:inline-flex;align-items:center;margin-top:0.5em;color:#008080;font-weight:bold;text-decoration:none;font-size:1.1rem;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/App_Store_%28iOS%29.svg" alt="App Store" style="height:24px;margin-right:6px;">다운로드
+    </a>
+  </div>
 </div>
 
 <style>

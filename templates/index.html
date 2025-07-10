@@ -110,8 +110,8 @@
 {% block content %}
 <div class="container">
   <h1>푸른솔 정신건강의학과에<br> 오신 것을 환영합니다</h1>
-  <p>다시금 되찾을 당신의 일상을 응원합니다.</p>
-  <p style="font-size:1.08rem; color:#008080; font-weight:bold; margin-top:0.5em;">영어 진료 가능합니다. (English available)</p>
+  <p style="font-size:1.4rem;">다시금 되찾을 당신의 일상을 응원합니다.</p>
+  <p style="font-size:1.4rem; color:#008080; font-weight:bold; margin-top:0.5em;">영어 진료 가능합니다. (English available)</p>
 
   <div class="card treatment-hours">
     <h3>진료 시간(Office hours)</h3>
@@ -146,16 +146,16 @@
   <div class="reservation">
     <h3>초진 예약 안내</h3>
     <div class="main-info-text">
-      <p>
+      <p style="font-size:1.4rem;">
         초진 예약은 전화로만 가능합니다.<br>
         아래 번호를 클릭하여 예약해주세요.<br>
-        <span style="color:#888; font-size:0.97em;">
+        <span style="color:#888; font-size:1.4rem;">
           (First-time appointments are available by phone only.<br>
           Please click the number below to make a reservation.)
         </span>
       </p>
       <div class="phone-container">
-        <a href="tel:0285655557" class="phone-link">
+        <a href="tel:+8228565557" class="phone-link">
           <span class="phone-icon">📞</span>
           <span class="phone-number">02-856-5557</span>
         </a>
@@ -166,22 +166,30 @@
   <div class="reservation">
     <h3>재진 예약 안내</h3>
     <div class="main-info-text">
-      <p>
-        <a href="#" onclick="showPopup()" style="color:#008080;font-weight:bold;text-decoration:none;">아임파인</a> 앱을 통해 재진 예약이 가능합니다.<br>
+      <p style="font-size:1.4rem;">
+        <a href="#" onclick="showPopup()" style="color:#008080;font-weight:bold;text-decoration:none;font-size:1.4rem;">아임파인</a> 앱을 통해 재진 예약이 가능합니다.<br>
         아래 QR 코드를 통해 앱을 설치해주세요.<br>
-        <span style="color:#888; font-size:0.97em;">
+        <span style="color:#888; font-size:1.4rem;">
           (For follow-up appointments, you can use the <b>IMFINE</b> app.<br>
           Please install the app using the QR code below.)
         </span>
       </p>
       <div class="qr-container">
-        <div>
+        <div style="text-align:center;">
           <p>📱 Android</p>
           <img src="{{ url_for('static', filename='images/imfine_google_qr.png') }}" width="120">
+          <br>
+          <a href="https://play.google.com/store/apps/details?id=io.lokks.careease&hl=ko" target="_blank" style="display:inline-flex;align-items:center;margin-top:0.5em;color:#008080;font-weight:bold;text-decoration:none;font-size:1.1rem;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play" style="height:24px;margin-right:6px;">다운로드
+          </a>
         </div>
-        <div>
+        <div style="text-align:center;">
           <p>🍎 iOS</p>
           <img src="{{ url_for('static', filename='images/imfine_apple_qr.png') }}" width="120">
+          <br>
+          <a href="https://apps.apple.com/kr/app/%EC%95%84%EC%9E%84%ED%8C%8C%EC%9D%B8-im-fine/id1573100943" target="_blank" style="display:inline-flex;align-items:center;margin-top:0.5em;color:#008080;font-weight:bold;text-decoration:none;font-size:1.1rem;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/67/App_Store_%28iOS%29.svg" alt="App Store" style="height:24px;margin-right:6px;">다운로드
+          </a>
         </div>
       </div>
     </div>
@@ -189,7 +197,8 @@
 
   <!-- 아임파인 안내 팝업 -->
   <div id="popup" class="popup-container" onclick="closePopup()">
-    <div class="popup-content">
+    <div class="popup-content" onclick="event.stopPropagation()" style="position:relative;">
+      <button onclick="closePopup()" style="position:absolute; top:10px; right:10px; background:none; border:none; font-size:1.7rem; cursor:pointer; color:#888;">✕</button>
       <img src="{{ url_for('static', filename='images/imfine.jpg') }}" alt="아임파인 안내">
     </div>
   </div>
@@ -230,7 +239,10 @@
           text-align: center;
           min-width: 100px;
           max-width: 220px;
-        ">
+          cursor: pointer;"
+          onclick="window.open('https://map.naver.com/p/entry/place/1926877701?c=15.00,0,0,0,dh&placePath=/home?from=map&fromPanelNum=1&additionalHeight=76&timestamp=202507110724&locale=ko&svcName=map_pcv5', '_blank')"
+          title="네이버지도에서 보기"
+        >
           푸른솔 정신과
         </div>
       `;
