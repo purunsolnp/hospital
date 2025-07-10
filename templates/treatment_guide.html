@@ -308,35 +308,6 @@
         text-decoration: underline;
     }
 
-    /* 탭 스타일 */
-    .tab-container {
-        display: flex;
-        justify-content: center;
-        margin-bottom: 2rem;
-        position: relative;
-    }
-
-    .tab-content {
-        display: none;
-        text-align: center;
-        min-height: 400px;
-        transition: opacity 0.3s ease;
-    }
-
-    .tab-content.active {
-        display: block;
-        opacity: 1;
-    }
-
-    .tab-content:not(.active) {
-        opacity: 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        pointer-events: none;
-    }
-
     /* 팝업 스타일 */
     .popup-container {
         display: none;
@@ -393,17 +364,6 @@
         .info-grid {
             grid-template-columns: 1fr;
         }
-
-        .tab-container {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .tab-button {
-            width: 100%;
-            max-width: 300px;
-            margin: 2px 0;
-        }
     }
 
     @media screen and (max-width: 480px) {
@@ -426,6 +386,7 @@
         }
     }
 
+    /* 탭 관련 스타일(.tab-button, .tab-container, .tab-content, .tab-button.active 등) 삭제, guide-section, info-section, faq-item, popup 등은 남김 */
     .guide-section h2,
     .guide-section h4,
     .guide-section p,

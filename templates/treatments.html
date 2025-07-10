@@ -183,63 +183,33 @@
 
 <!-- 스타일 -->
 <style>
-  .tab-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-    gap: 10px;
+  /* symptom-grid, symptom-item 등 증상 박스 관련 스타일만 남기고 탭 관련 스타일(.tab-container, .tab-button, .tab-content, .tab-button.active, .tab-button:hover, 미디어 쿼리 내 탭 관련 등)은 모두 삭제 */
+  .symptom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
   }
-  
-  .tab-button {
-    padding: 10px 20px;
-    margin: 0 5px;
-    border: none;
-    background-color: #f0f0f0;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
+  .symptom-item {
+    background: #f8f8f8;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #008080;
   }
-  
-  .tab-button:hover {
-    background-color: #e0e0e0;
+  .symptom-item h4 {
+    color: #008080;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
   }
-  
-  .tab-button.active {
-    background-color: #008080;
-    color: white;
+  .symptom-item p {
+    font-size: 0.95rem;
+    margin: 0;
   }
-  
-  .tab-content {
-    display: none;
+  .symptom-item h4,
+  .symptom-item p {
     text-align: center;
-    /* 탭 콘텐츠 최소 높이 설정으로 레이아웃 시프트 방지 */
-    min-height: 600px;
-    /* 부드러운 전환 효과 */
-    transition: opacity 0.3s ease;
   }
-  
-  .tab-content.active {
-    display: block;
-    opacity: 1;
-  }
-  
-  /* 비활성 탭은 투명하게 숨김 */
-  .tab-content:not(.active) {
-    opacity: 0;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    pointer-events: none;
-  }
-  
-  /* 탭 컨테이너에 상대 위치 설정 */
-  .tab-container {
-    position: relative;
-  }
-  
   .treatment-section {
     max-width: 800px;
     margin: 0 auto;
@@ -281,37 +251,6 @@
     line-height: 1.7;
     color: #555;
     margin-bottom: 0.5rem;
-  }
-  
-  .symptom-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1rem;
-    margin: 1rem 0;
-  }
-  
-  .symptom-item {
-    background: #f8f8f8;
-    padding: 15px;
-    border-radius: 8px;
-    border-left: 4px solid #008080;
-  }
-  
-  .symptom-item h4 {
-    color: #008080;
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-  
-  .symptom-item p {
-    font-size: 0.95rem;
-    margin: 0;
-  }
-  
-  .symptom-item h4,
-  .symptom-item p {
-    text-align: center;
   }
   
   .treatment-methods {
@@ -356,17 +295,6 @@
   
   /* 반응형 디자인 */
   @media screen and (max-width: 768px) {
-    .tab-container {
-      flex-direction: column;
-      align-items: center;
-    }
-    
-    .tab-button {
-      width: 100%;
-      max-width: 300px;
-      margin: 2px 0;
-    }
-    
     .treatment-section {
       padding: 15px;
     }

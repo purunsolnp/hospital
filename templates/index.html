@@ -50,12 +50,6 @@
     color: #008080;
   }
 
-  .card p {
-    font-size: 1rem;
-    margin: 0.5rem 0;
-    line-height: 1.5;
-  }
-
   .reservation h3,
   .location h3 {
     font-size: 1.4rem;
@@ -171,10 +165,6 @@
       font-size: 1.3rem;
     }
 
-    .card p {
-      font-size: 0.95rem;
-    }
-
     .reservation h3,
     .location h3 {
       font-size: 1.3rem;
@@ -232,10 +222,6 @@
 
     .card h3 {
       font-size: 1.3rem;
-    }
-
-    .card p {
-      font-size: 1rem;
     }
 
     .reservation h3,
@@ -301,10 +287,6 @@
       font-size: 1.2rem;
     }
 
-    .card p {
-      font-size: 1rem;
-    }
-
     .reservation h3,
     .location h3 {
       font-size: 1.2rem;
@@ -334,6 +316,22 @@
 
     #map {
       height: 250px;
+    }
+  }
+
+  /* PC에서 세부 텍스트(본문, 안내, 리스트 등) 폰트 크기 1.25rem로 지정 */
+  @media screen and (min-width: 769px) {
+    .main-section,
+    .main-section p,
+    .main-section li,
+    .main-section ul,
+    .main-section span,
+    .main-section div,
+    .main-section address {
+      font-size: 1.25rem;
+    }
+    .main-info-text, .main-info-text p, .main-info-text address {
+      font-size: 1.25rem;
     }
   }
 </style>
@@ -373,37 +371,43 @@
 
   <div class="reservation">
     <h3>초진 예약 안내</h3>
-    <p>초진 예약은 전화로만 가능합니다.<br>아래 번호를 클릭하여 예약해주세요.</p>
-    <div class="phone-container">
-      <a href="tel:0285655557" class="phone-link">
-        <span class="phone-icon">📞</span>
-        <span class="phone-number">02-856-5557</span>
-      </a>
+    <div class="main-info-text">
+      <p>초진 예약은 전화로만 가능합니다.<br>아래 번호를 클릭하여 예약해주세요.</p>
+      <div class="phone-container">
+        <a href="tel:0285655557" class="phone-link">
+          <span class="phone-icon">📞</span>
+          <span class="phone-number">02-856-5557</span>
+        </a>
+      </div>
     </div>
   </div>
 
   <div class="reservation">
     <h3>재진 예약 안내</h3>
-    <p>아임파인 앱을 통해 재진 예약이 가능합니다.<br>아래 QR 코드를 통해 앱을 설치해주세요.</p>
-    <div class="qr-container">
-      <div>
-        <p>📱 Android</p>
-        <img src="{{ url_for('static', filename='images/imfine_google_qr.png') }}" width="120">
-      </div>
-      <div>
-        <p>🍎 iOS</p>
-        <img src="{{ url_for('static', filename='images/imfine_apple_qr.png') }}" width="120">
+    <div class="main-info-text">
+      <p>아임파인 앱을 통해 재진 예약이 가능합니다.<br>아래 QR 코드를 통해 앱을 설치해주세요.</p>
+      <div class="qr-container">
+        <div>
+          <p>📱 Android</p>
+          <img src="{{ url_for('static', filename='images/imfine_google_qr.png') }}" width="120">
+        </div>
+        <div>
+          <p>🍎 iOS</p>
+          <img src="{{ url_for('static', filename='images/imfine_apple_qr.png') }}" width="120">
+        </div>
       </div>
     </div>
   </div>
 
   <div class="location">
     <h3>오시는 길</h3>
-    <p>
-      서울시 구로구 디지털로 285<br>
-      에이스 트윈타워 1차 203호<br>
-      (태평양물산 맞은편, 주차 가능)
-    </p>
+    <div class="main-info-text">
+      <address>
+        서울시 구로구 디지털로 285<br>
+        에이스 트윈타워 1차 203호<br>
+        (태평양물산 맞은편, 주차 가능)
+      </address>
+    </div>
     <div id="map"></div>
   </div>
 </div>

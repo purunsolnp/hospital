@@ -209,7 +209,7 @@
       }
 
       .header {
-        background-color: #008080;
+        background-color: white;
         display: flex;
         justify-content: flex-start;
         align-items: center;
@@ -222,6 +222,11 @@
         height: 80px;
         box-sizing: border-box;
         position: relative;
+      }
+      @media screen and (max-width: 1024px) {
+        .header {
+          background-color: #008080;
+        }
       }
       .logo {
         display: flex;
