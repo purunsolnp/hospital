@@ -1,87 +1,338 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1 style="text-align: center; font-size: 2rem; font-weight: bold; margin-bottom: 1rem;">의료진 소개</h1>
+<h1 style="text-align: center;">의료진 소개</h1>
 
-<!-- ✅ 의사 선택 버튼 -->
-<div class="doctor-tabs">
-  {% for doctor in doctors %}
-    <button class="doctor-tab" onclick="loadDoctor(`{{ doctor['Docs링크'] | safe }}`, this)" data-doc="{{ doctor['Docs링크'] | safe }}">
-      {{ doctor['이름'] }} {{ doctor['직책'] }}
-    </button>
-  {% endfor %}
+<div class="doctor-profile">
+  <div class="doctor-header">
+    <div class="doctor-info">
+      <h2>전한솔 대표원장</h2>
+      <p class="doctor-title">정신건강의학과 전문의</p>
+    </div>
+  </div>
+
+  <div class="profile-sections">
+    <!-- 학력 -->
+    <section class="profile-section">
+      <h3>🎓 학력</h3>
+      <ul>
+        <li>서울대학교 졸업 (학사)</li>
+        <li>건국대학교 의학전문대학원 졸업</li>
+        <li>건국대학교병원 정신건강의학과 레지던트</li>
+        <li>정신건강의학과 전문의</li>
+      </ul>
+    </section>
+
+    <!-- 자격 및 수료 -->
+    <section class="profile-section">
+      <h3>📜 자격 및 수료</h3>
+      <ul>
+        <li>학교응급심리지원 전문가 수료</li>
+        <li>대한 신경정신의학회 정회원</li>
+        <li>정서인지행동의학회 정회원</li>
+        <li>한일 정신의학회 정회원</li>
+      </ul>
+    </section>
+
+    <!-- 경력 -->
+    <section class="profile-section">
+      <h3>💼 경력</h3>
+      <ul>
+        <li>건국대학교병원 인턴 과정 수료</li>
+        <li>건국대학교병원 정신건강의학과 레지던트 수료</li>
+        <li>전) 서울명병원 정신건강의학과 과장 및 나무병동 병동장</li>
+        <li>전) 판교 마음정원 정신건강의학과</li>
+      </ul>
+    </section>
+
+    <!-- 논문 및 주요 발표 -->
+    <section class="profile-section">
+      <h3>📚 논문 및 주요 발표</h3>
+      <div class="publication">
+        <h4>주요 논문</h4>
+        <p><strong>불면증으로 의뢰된 입원환자의 임상적 특징 및 협진 유형 분석</strong></p>
+        <p>대한수면의학회, 수면 정신생리 25(2) : 68-73, 2018</p>
+        
+        <h4>국제 발표</h4>
+        <p><strong>The Characteristics and Types of Psychiatric Consultation for Insomnia Symptom in Hospitalized Patients</strong></p>
+        
+        <h4>학회 참가</h4>
+        <p><strong>제 19회 한일정신의학회 (The 19th Korea-Japan Young Psychiatrist's Conference)</strong></p>
+        <p>참가 및 정신 분석 치료 사례 발표 (한국 참가자 대표)</p>
+      </div>
+    </section>
+
+    <!-- 원장 인사말 -->
+    <section class="profile-section message-section">
+      <h3>💝 원장 인사말</h3>
+      <div class="message-content">
+        <p>살다 보면 여러 가지 일들이 있기 마련입니다.</p>
+        <p>늘 좋은 일들만 가득하면 좋겠지만,<br>
+        인생이 꼭 내 마음대로만 흘러가지는<br>
+        않다 보니 때로는 예측하지 못한<br>
+        고난과 삶의 무게를 견뎌야 합니다.</p>
+        
+        <p>나도 모르게 쌓인 상처들이 켜켜이 쌓여서<br>
+        마음의 흉터가 되기도 합니다.<br>
+        일상이 무너지고 돌아갈 수 없을 것 같다는<br>
+        생각이 들 때도 있습니다.</p>
+        
+        <p>내 마음 속 깊은 곳의 이야기를<br>
+        누군가에게 하고 싶은데 어디서부터<br>
+        어떻게 말해야 할지 막막한 순간에,<br>
+        <strong>푸른솔정신건강의학과</strong>를 찾아주세요.</p>
+        
+        <p>마음의 흉터를 들여다보고<br>
+        건강하게 치유해 드리겠습니다.</p>
+        
+        <p class="highlight">다시금 되찾을 당신의 소중한 일상을 응원합니다.</p>
+        
+        <div class="signature">
+          <p><strong>푸른솔정신건강의학과</strong></p>
+          <p><strong>대표원장 전 한 솔</strong></p>
+        </div>
+      </div>
+    </section>
+  </div>
 </div>
 
-<!-- ✅ Google Docs 프레임 -->
-<div class="doctor-frame-container">
-  <iframe id="doctorFrame" width="100%" style="border: none; display: block; margin: auto; max-width: 900px; height: auto; min-height: 1800px;"></iframe>
-
-</div>
-
-<!-- ✅ 스타일 (버튼 디자인 개선 및 가독성 향상) -->
 <style>
-  .doctor-tabs {
-    display: flex;
-    flex-wrap: wrap; /* 버튼이 많아지면 자동 줄바꿈 */
-    gap: 20px;
-    justify-content: center;
-    margin-bottom: 20px;
+  body {
+    font-size: 18px;
+  }
+  .profile-section h3,
+  .profile-section li,
+  .profile-section p,
+  .profile-section ul {
+    font-size: 1.2em !important;
+  }
+  .doctor-profile {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
   }
 
-  .doctor-tab {
+  .doctor-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 15px;
+    border-left: 5px solid #008080;
+  }
+
+  .doctor-info h2 {
+    color: #008080;
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+
+  .doctor-title {
+    font-size: 1.2rem;
+    color: #666;
+    margin: 0;
+  }
+
+  .profile-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .profile-section {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+    font-size: 1.25rem;
+  }
+  .profile-section li,
+  .profile-section p,
+  .profile-section ul {
+    font-size: inherit;
+  }
+
+  .profile-section h3 {
+    color: #008080;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #008080;
+    padding-bottom: 0.5rem;
+  }
+
+  .profile-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .profile-section li {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 0.8rem;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+
+  .profile-section li:before {
+    content: "•";
+    color: #008080;
+    font-weight: bold;
+    position: absolute;
+    left: 0;
+  }
+
+  .publication h4 {
+    color: #333;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 1.5rem 0 0.8rem 0;
+  }
+
+  .publication p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 0.8rem;
+  }
+
+  .message-section {
+    background: linear-gradient(135deg, #f0f8ff 0%, #e6f3ff 100%);
+    border-left: 5px solid #008080;
+  }
+
+  .message-content {
+    font-size: 1.1rem;
+    line-height: 2;
+    color: #333;
+    text-align: center;
+  }
+
+  .message-content p {
+    margin-bottom: 1.5rem;
+  }
+
+  .highlight {
     font-size: 1.2rem;
     font-weight: bold;
-    padding: 0.7rem 1.2rem;
-    text-decoration: none;
     color: #008080;
-    border: 2px solid transparent;
-    background: none;
-    transition: all 0.3s ease;
-    cursor: pointer;
+    margin: 2rem 0;
   }
 
-  .doctor-tab:hover, .doctor-tab.active {
-    border-bottom: 3px solid #008080;
-    color: #005f5f;
+  .signature {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid #008080;
   }
 
-  .doctor-frame-container {
-    text-align: center;
-    max-width: 900px;
-    margin: 0 auto;
+  .signature p {
+    margin: 0.5rem 0;
+    font-size: 1.1rem;
   }
 
-  iframe {
-    width: 100%;
-    height: 700px;
-    border-radius: 8px;
+  /* 반응형 디자인 */
+  @media screen and (max-width: 768px) {
+    .doctor-profile {
+      padding: 1rem;
+    }
+
+    .doctor-header {
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .doctor-info h2 {
+      font-size: 1.8rem;
+    }
+
+    .doctor-title {
+      font-size: 1.1rem;
+    }
+
+    .profile-section {
+      padding: 1.5rem;
+      font-size: 1.15rem;
+    }
+
+    .profile-section h3 {
+      font-size: 1.3rem;
+    }
+
+    .profile-section li {
+      font-size: 1rem;
+    }
+
+    .publication h4 {
+      font-size: 1.1rem;
+    }
+
+    .publication p {
+      font-size: 1rem;
+    }
+
+    .message-content {
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .highlight {
+      font-size: 1.1rem;
+    }
+
+    .signature p {
+      font-size: 1rem;
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    .doctor-profile {
+      padding: 0.8rem;
+    }
+
+    .doctor-header {
+      padding: 1rem;
+    }
+
+    .doctor-info h2 {
+      font-size: 1.6rem;
+    }
+
+    .profile-section {
+      padding: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .profile-section h3 {
+      font-size: 1.2rem;
+    }
+
+    .profile-section li {
+      font-size: 1rem;
+    }
+
+    .publication h4 {
+      font-size: 1rem;
+    }
+
+    .publication p {
+      font-size: 1rem;
+    }
+
+    .message-content {
+      font-size: 1rem;
+    }
+
+    .highlight {
+      font-size: 1.1rem;
+    }
+
+    .signature p {
+      font-size: 1rem;
+    }
   }
 </style>
-
-<!-- ✅ JavaScript (첫 번째 의사 기본 표시 & 디버깅 추가) -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    let firstDoctor = document.querySelector(".doctor-tab");
-    if (firstDoctor) {
-      firstDoctor.classList.add("active");
-      loadDoctor(firstDoctor.getAttribute("data-doc"), firstDoctor);
-    } else {
-      console.error("❌ 첫 번째 의사 데이터를 찾을 수 없음.");
-    }
-  });
-
-  function loadDoctor(docLink, button) {
-    if (docLink) {
-        let embedUrl = docLink.includes("/pub") ? docLink + "?embedded=true" : docLink;
-        console.log("📌 로드할 문서 URL:", embedUrl);
-        document.getElementById("doctorFrame").src = embedUrl;
-
-        document.querySelectorAll(".doctor-tab").forEach(btn => btn.classList.remove("active"));
-        button.classList.add("active");
-    } else {
-        console.error("❌ 올바른 Docs 링크가 없습니다.");
-    }
-  }
-</script>
-
 {% endblock %}

@@ -1,131 +1,426 @@
 {% extends "base.html" %}
-{% block styles %}
-<style>
-.treatment-tabs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 15px;
-    justify-content: center;
-    margin-bottom: 20px;
-}
 
-.tab-button {
-    font-size: 1.2rem;
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-    text-decoration: none;
-    color: #008080;
-    border: none;
-    background: none;
-    transition: color 0.3s, border-bottom 0.3s;
-    cursor: pointer;
-}
-
-.tab-button:hover, .tab-button.active {
-    border-bottom: 2px solid #008080;
-    color: #005f5f;
-}
-
-.iframe-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-    overflow: hidden;
-}
-
-iframe {
-    width: 100%;
-    max-width: 800px;
-    height: 600px;
-    border: none;
-    display: block;
-    margin: auto;
-}
-
-/* ✅ 푸터와 본문 사이의 여백을 줄이는 코드 */
-.treatment-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    max-width: 800px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 20px 0;
-}
-</style>
-{% endblock %}
 {% block content %}
-<div class="container">
-    <h1 style="text-align: center;">진료과목 안내</h1>
+<h1 style="text-align: center;">진료과목 안내</h1>
 
-    <!-- ✅ 진료과목 선택 버튼 -->
-    <div class="treatment-tabs">
-      <!-- 버튼이 동적으로 추가됨 -->
-    </div>
-
-    <!-- ✅ iframe을 감싸는 컨테이너 추가 -->
-    <div class="iframe-container">
-        <iframe id="treatmentFrame" onload="resizeIframe(this)" style="height: auto; min-height: 1500px;"></iframe>
-
-    </div>
+<!-- 진료과목 탭 버튼 -->
+<div class="tab-container">
+  <button class="tab-button active" onclick="showTab('depression')">우울증</button>
+  <button class="tab-button" onclick="showTab('anxiety')">불안장애</button>
+  <button class="tab-button" onclick="showTab('adhd')">ADHD</button>
+  <button class="tab-button" onclick="showTab('panic')">공황장애</button>
+  <button class="tab-button" onclick="showTab('insomnia')">불면증</button>
+  <button class="tab-button" onclick="showTab('stress')">스트레스</button>
 </div>
 
-<!-- ✅ JavaScript -->
-<script>
-    function resizeIframe(iframe) {
-        iframe.style.height = iframe.contentWindow.document.body.scrollHeight + "px";
+<!-- 우울증 -->
+<div id="depression" class="tab-content active">
+  <section class="treatment-section">
+    <h2>😔 우울증 (Depression)</h2>
+    <p>우울증은 지속적인 우울감과 흥미 상실을 특징으로 하는 심리적 장애입니다. 일상생활에 심각한 영향을 미칠 수 있어 전문적인 치료가 필요합니다.</p>
+    
+    <h3>주요 증상</h3>
+    <div class="symptom-grid">
+      <div class="symptom-item">
+        <h4>정서적 증상</h4>
+        <p>지속적인 우울감, 절망감, 무가치감, 죄책감</p>
+      </div>
+      <div class="symptom-item">
+        <h4>신체적 증상</h4>
+        <p>피로감, 수면장애, 식욕변화, 체중변화</p>
+      </div>
+      <div class="symptom-item">
+        <h4>인지적 증상</h4>
+        <p>집중력 저하, 기억력 감퇴, 부정적 사고</p>
+      </div>
+      <div class="symptom-item">
+        <h4>행동적 증상</h4>
+        <p>사회적 위축, 흥미 상실, 자살 생각</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 불안장애 -->
+<div id="anxiety" class="tab-content">
+  <section class="treatment-section">
+    <h2>😰 불안장애 (Anxiety Disorder)</h2>
+    <p>불안장애는 과도하고 지속적인 걱정과 불안을 특징으로 하며, 다양한 형태로 나타날 수 있습니다.</p>
+    
+    <h3>주요 유형</h3>
+    <div class="symptom-grid">
+      <div class="symptom-item">
+        <h4>범불안장애</h4>
+        <p>지속적인 과도한 걱정</p>
+      </div>
+      <div class="symptom-item">
+        <h4>사회불안장애</h4>
+        <p>사회적 상황에서의 극심한 불안</p>
+      </div>
+      <div class="symptom-item">
+        <h4>특정공포증</h4>
+        <p>특정 대상이나 상황에 대한 공포</p>
+      </div>
+      <div class="symptom-item">
+        <h4>분리불안장애</h4>
+        <p>애착 대상과의 분리에 대한 불안</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ADHD -->
+<div id="adhd" class="tab-content">
+  <section class="treatment-section">
+    <h2>⚡ ADHD (주의력결핍과잉행동장애)</h2>
+    <p>ADHD는 주의력 부족, 과잉행동, 충동성을 특징으로 하는 신경발달장애입니다. 아동기에 시작되어 성인기까지 지속될 수 있습니다.</p>
+    
+    <h3>주요 증상</h3>
+    <div class="symptom-grid">
+      <div class="symptom-item">
+        <h4>주의력 부족</h4>
+        <p>세부사항 놓침, 지속적 주의 어려움, 조직화 어려움</p>
+      </div>
+      <div class="symptom-item">
+        <h4>과잉행동</h4>
+        <p>안절부절함, 과도한 활동, 조용히 앉아있기 어려움</p>
+      </div>
+      <div class="symptom-item">
+        <h4>충동성</h4>
+        <p>성급한 행동, 차례 기다리기 어려움, 방해하기</p>
+      </div>
+      <div class="symptom-item">
+        <h4>학습/직업 문제</h4>
+        <p>학업 성취도 저하, 직장에서의 어려움</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 공황장애 -->
+<div id="panic" class="tab-content">
+  <section class="treatment-section">
+    <h2>😱 공황장애 (Panic Disorder)</h2>
+    <p>공황장애는 예측할 수 없는 공황발작이 반복적으로 발생하는 불안장애입니다. 심각한 신체 증상을 동반하여 응급실을 찾는 경우도 많습니다.</p>
+    
+    <h3>공황발작 증상</h3>
+    <div class="symptom-grid">
+      <div class="symptom-item">
+        <h4>심장 증상</h4>
+        <p>심계항진, 심장이 빠르게 뛰는 느낌</p>
+      </div>
+      <div class="symptom-item">
+        <h4>호흡 증상</h4>
+        <p>숨이 막히는 느낌, 호흡곤란</p>
+      </div>
+      <div class="symptom-item">
+        <h4>신체 증상</h4>
+        <p>떨림, 발한, 오한, 열감</p>
+      </div>
+      <div class="symptom-item">
+        <h4>정신 증상</h4>
+        <p>죽을 것 같은 공포, 통제력 상실감</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 불면증 -->
+<div id="insomnia" class="tab-content">
+  <section class="treatment-section">
+    <h2>😴 불면증 (Insomnia)</h2>
+    <p>불면증은 충분한 수면을 취하지 못하거나 수면의 질이 떨어져서 낮 동안의 기능에 문제를 일으키는 수면장애입니다.</p>
+    
+    <h3>주요 증상</h3>
+    <div class="symptom-grid">
+      <div class="symptom-item">
+        <h4>수면 시작 어려움</h4>
+        <p>잠들기 어려움</p>
+      </div>
+      <div class="symptom-item">
+        <h4>수면 유지 어려움</h4>
+        <p>자주 깨거나 일찍 깸</p>
+      </div>
+      <div class="symptom-item">
+        <h4>수면의 질 저하</h4>
+        <p>수면의 질 저하</p>
+      </div>
+      <div class="symptom-item">
+        <h4>낮 시간 증상</h4>
+        <p>낮 동안 피로감, 집중력 저하</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 스트레스 -->
+<div id="stress" class="tab-content">
+  <section class="treatment-section">
+    <h2>😤 스트레스 관리</h2>
+    <p>현대인의 일상에서 스트레스는 불가피하지만, 과도한 스트레스는 신체적, 정신적 건강에 해로운 영향을 미칩니다.</p>
+    
+    <h3>주요 증상</h3>
+    <div class="symptom-grid">
+      <div class="symptom-item">
+        <h4>지속적 노출</h4>
+        <p>지속적인 스트레스 상황 노출</p>
+      </div>
+      <div class="symptom-item">
+        <h4>피로감</h4>
+        <p>신체적, 정서적 피로감</p>
+      </div>
+      <div class="symptom-item">
+        <h4>집중력/정서</h4>
+        <p>집중력 저하, 불안, 우울감</p>
+      </div>
+      <div class="symptom-item">
+        <h4>신체 증상</h4>
+        <p>수면장애, 두통, 소화불량 등</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 스타일 -->
+<style>
+  .tab-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .tab-button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    border: none;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+  }
+  
+  .tab-button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .tab-button.active {
+    background-color: #008080;
+    color: white;
+  }
+  
+  .tab-content {
+    display: none;
+    text-align: center;
+    /* 탭 콘텐츠 최소 높이 설정으로 레이아웃 시프트 방지 */
+    min-height: 600px;
+    /* 부드러운 전환 효과 */
+    transition: opacity 0.3s ease;
+  }
+  
+  .tab-content.active {
+    display: block;
+    opacity: 1;
+  }
+  
+  /* 비활성 탭은 투명하게 숨김 */
+  .tab-content:not(.active) {
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    pointer-events: none;
+  }
+  
+  /* 탭 컨테이너에 상대 위치 설정 */
+  .tab-container {
+    position: relative;
+  }
+  
+  .treatment-section {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    padding: 20px;
+  }
+  
+  .treatment-section h2 {
+    color: #008080;
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .treatment-section h3 {
+    color: #333;
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin: 1.5rem 0 0.8rem 0;
+    border-bottom: 2px solid #008080;
+    padding-bottom: 0.5rem;
+  }
+  
+  .treatment-section p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 1rem;
+  }
+  
+  .treatment-section ul {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+  
+  .treatment-section li {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 0.5rem;
+  }
+  
+  .symptom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .symptom-item {
+    background: #f8f8f8;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid #008080;
+  }
+  
+  .symptom-item h4 {
+    color: #008080;
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+  }
+  
+  .symptom-item p {
+    font-size: 0.95rem;
+    margin: 0;
+  }
+  
+  .treatment-methods {
+    background: #f0f8ff;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 1rem 0;
+  }
+  
+  .treatment-methods h4 {
+    color: #0066cc;
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    text-align: center;
+  }
+  
+  .method-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+  }
+  
+  .method-item {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .method-item strong {
+    color: #0066cc;
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .method-item p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  
+  /* 반응형 디자인 */
+  @media screen and (max-width: 768px) {
+    .tab-container {
+      flex-direction: column;
+      align-items: center;
     }
+    
+    .tab-button {
+      width: 100%;
+      max-width: 300px;
+      margin: 2px 0;
+    }
+    
+    .treatment-section {
+      padding: 15px;
+    }
+    
+    .treatment-section h2 {
+      font-size: 1.5rem;
+    }
+    
+    .treatment-section h3 {
+      font-size: 1.2rem;
+    }
+    
+    .symptom-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .method-list {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  @media screen and (max-width: 480px) {
+    .treatment-section {
+      padding: 10px;
+    }
+    
+    .treatment-section h2 {
+      font-size: 1.3rem;
+    }
+    
+    .treatment-section h3 {
+      font-size: 1.1rem;
+    }
+    
+    .treatment-section p,
+    .treatment-section li {
+      font-size: 0.95rem;
+    }
+  }
+</style>
 
-    document.addEventListener("DOMContentLoaded", function () {
-        fetch("/get_treatments")
-        .then(response => response.json())
-        .then(data => {
-            const tabContainer = document.querySelector(".treatment-tabs");
-            const iframe = document.getElementById("treatmentFrame");
-
-            if (data.error) {
-                tabContainer.innerHTML = `<p>데이터를 불러오는 중 오류 발생: ${data.error}</p>`;
-                return;
-            }
-
-            data.forEach((item, index) => {
-                const button = document.createElement("button");
-                button.classList.add("tab-button");
-                button.textContent = item["질환명"];
-                button.onclick = () => loadTreatment(item["Docs링크"], button);
-                tabContainer.appendChild(button);
-
-                // 첫 번째 탭을 기본값으로 설정
-                if (index === 0) {
-                    button.classList.add("active");
-                    loadTreatment(item["Docs링크"], button);
-                }
-            });
-        })
-        .catch(error => {
-            document.querySelector(".treatment-tabs").innerHTML = `<p>데이터를 불러오는 중 오류 발생: ${error}</p>`;
-        });
-
-        function loadTreatment(docLink, button) {
-            let embedUrl = docLink.replace("/edit", "/preview") + "?embedded=true&rm=minimal&single=true";
-            let iframe = document.getElementById("treatmentFrame");
-            iframe.src = embedUrl;
-
-            iframe.onload = function() {
-                resizeIframe(iframe);
-            };
-
-            // 기존 활성화된 버튼 스타일 제거 후 현재 버튼 활성화
-            document.querySelectorAll(".tab-button").forEach(btn => btn.classList.remove("active"));
-            button.classList.add("active");
-        }
+<!-- JavaScript -->
+<script>
+  function showTab(tabId) {
+    // 모든 탭 콘텐츠 숨기기
+    document.querySelectorAll('.tab-content').forEach(tab => {
+      tab.classList.remove('active');
     });
+    
+    // 모든 탭 버튼 비활성화
+    document.querySelectorAll('.tab-button').forEach(button => {
+      button.classList.remove('active');
+    });
+    
+    // 선택된 탭 콘텐츠 보이기
+    document.getElementById(tabId).classList.add('active');
+    
+    // 선택된 탭 버튼 활성화
+    event.target.classList.add('active');
+  }
 </script>
-
 {% endblock %}
