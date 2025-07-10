@@ -19,6 +19,8 @@ body {
     text-align: center;
 }
 
+/* row-pc flex 스타일 완전 삭제! */
+
 .summary-cards {
     display: flex;
     justify-content: center;

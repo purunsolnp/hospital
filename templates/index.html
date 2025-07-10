@@ -2,98 +2,30 @@
 
 {% block styles %}
 <style>
-  /* 메인 페이지 전용 스타일 */
   .container {
     max-width: 900px;
     margin: 0 auto;
     padding: 2rem 1.5rem;
     text-align: center;
   }
-
-  h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    color: #333;
-    line-height: 1.3;
-  }
-
-  .container > p {
-    font-size: 1.2rem;
-    color: #666;
-    margin-bottom: 3rem;
-    line-height: 1.6;
-  }
-
-  .summary-cards {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-    margin-bottom: 3rem;
-  }
-
   .card {
-    flex: 1;
     min-width: 280px;
     padding: 2rem;
     border: 1px solid #ddd;
     border-radius: 10px;
     background-color: #f9f9f9;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
   }
-
-  .card h3 {
-    font-size: 1.4rem;
+  .location, .reservation {
+    margin-bottom: 2rem;
+  }
+  .clinic-hours-bold {
     font-weight: bold;
-    margin-bottom: 1rem;
     color: #008080;
+    margin-top: 0.7em;
   }
-
-  .reservation h3,
-  .location h3 {
-    font-size: 1.4rem;
-    font-weight: bold;
-    margin-bottom: 1rem;
-    color: #008080;
-  }
-
-  .reservation p,
-  .location p {
-    font-size: 1rem;
-    line-height: 1.6;
-    margin-bottom: 1rem;
-  }
-
-  .qr-container {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-top: 1.5rem;
-    flex-wrap: wrap;
-  }
-
-  .qr-container div {
-    text-align: center;
-  }
-
-  .qr-container p {
-    font-size: 1rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-  }
-
-  .qr-container img {
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-  }
-
-  .phone-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 1.5rem;
-  }
-
+  /* 전화번호 포인트 컬러 박스형 스타일 */
   .phone-link {
     display: flex;
     align-items: center;
@@ -107,266 +39,107 @@
     font-weight: bold;
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    justify-content: center;
+    margin: 1rem auto 0 auto;
+    width: fit-content;
   }
-
   .phone-link:hover {
     background-color: #006666;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   }
-
   .phone-icon {
     font-size: 1.5rem;
   }
-
   .phone-number {
     font-size: 1.4rem;
   }
-
-  #map {
-    width: 100%;
-    height: 400px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    margin-top: 1rem;
-  }
-
-  .mobile-logo-wrapper {
-    display: none;
-    text-align: center;
-    margin-bottom: 2rem;
-  }
-
-  .mobile-logo {
-    width: 200px;
-    max-width: 65%;
-    height: auto;
-  }
-
-  /* 태블릿 반응형 (768px - 1024px) */
-  @media screen and (max-width: 1024px) {
-    .container {
-      padding: 1.5rem 1rem;
-    }
-
-    h1 {
-      font-size: 2.2rem;
-    }
-
-    .container > p {
-      font-size: 1.1rem;
-    }
-
+  @media (min-width: 769px) {
     .card {
-      padding: 1.5rem;
-    }
-
-    .card h3 {
-      font-size: 1.3rem;
-    }
-
-    .reservation h3,
-    .location h3 {
-      font-size: 1.3rem;
-    }
-
-    .reservation p,
-    .location p {
-      font-size: 0.95rem;
-    }
-
-    .qr-container p {
-      font-size: 0.95rem;
-    }
-
-    .phone-link {
-      font-size: 1.2rem;
-      padding: 0.8rem 1.5rem;
-    }
-
-    .phone-number {
-      font-size: 1.3rem;
-    }
-
-    #map {
-      height: 350px;
+      min-width: 160px;
+      padding: 1rem 1.2rem;
     }
   }
-
-  /* 모바일 반응형 (768px 이하) */
-  @media screen and (max-width: 768px) {
+  @media (max-width: 768px) {
     .container {
+      display: block;
       padding: 1rem 0.8rem;
     }
-
-    h1 {
-      font-size: 2rem;
-      line-height: 1.4;
-    }
-
-    .container > p {
-      font-size: 1.1rem;
-      margin-bottom: 2rem;
-    }
-
-    .summary-cards {
-      flex-direction: column;
-      gap: 1rem;
-    }
-
     .card {
       min-width: auto;
       padding: 1.5rem;
       margin-bottom: 1rem;
     }
-
-    .card h3 {
-      font-size: 1.3rem;
-    }
-
-    .reservation h3,
-    .location h3 {
-      font-size: 1.3rem;
-    }
-
-    .reservation p,
-    .location p {
-      font-size: 1rem;
-    }
-
-    .qr-container {
-      flex-direction: column;
-      gap: 1rem;
-    }
-
-    .qr-container p {
-      font-size: 1rem;
-    }
-
-    .qr-container img {
-      width: 120px;
-    }
-
     .phone-link {
       font-size: 1.1rem;
       padding: 0.7rem 1.2rem;
     }
-
     .phone-number {
       font-size: 1.2rem;
     }
-
-    #map {
-      height: 300px;
-    }
-
-    .mobile-logo-wrapper {
-      display: block;
-    }
   }
-
-  /* 작은 모바일 (480px 이하) */
-  @media screen and (max-width: 480px) {
-    .container {
-      padding: 0.8rem 0.5rem;
-    }
-
-    h1 {
-      font-size: 1.8rem;
-    }
-
-    .container > p {
-      font-size: 1rem;
-    }
-
-    .card {
-      padding: 1.2rem;
-    }
-
-    .card h3 {
-      font-size: 1.2rem;
-    }
-
-    .reservation h3,
-    .location h3 {
-      font-size: 1.2rem;
-    }
-
-    .reservation p,
-    .location p {
-      font-size: 1rem;
-    }
-
-    .qr-container p {
-      font-size: 1rem;
-    }
-
-    .qr-container img {
-      width: 100px;
-    }
-
-    .phone-link {
-      font-size: 1rem;
-      padding: 0.6rem 1rem;
-    }
-
-    .phone-number {
-      font-size: 1.1rem;
-    }
-
-    #map {
-      height: 250px;
-    }
+  .popup-container {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
   }
-
-  /* PC에서 세부 텍스트(본문, 안내, 리스트 등) 폰트 크기 1.25rem로 지정 */
-  @media screen and (min-width: 769px) {
-    .main-section,
-    .main-section p,
-    .main-section li,
-    .main-section ul,
-    .main-section span,
-    .main-section div,
-    .main-section address {
-      font-size: 1.25rem;
-    }
-    .main-info-text, .main-info-text p, .main-info-text address {
-      font-size: 1.25rem;
-    }
+  .popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: auto;
+    text-align: center;
+  }
+  .popup-content img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
   }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="container">
-  <!-- 모바일 전용 로고 (선택 사항) -->
-  <div class="mobile-logo-wrapper">
-    <img src="{{ url_for('static', filename='images/logo-vertical.png') }}" alt="푸른솔 정신건강의학과 로고" class="mobile-logo">
-  </div>
-
   <h1>푸른솔 정신건강의학과에<br> 오신 것을 환영합니다</h1>
   <p>다시금 되찾을 당신의 일상을 응원합니다.</p>
 
-  <div class="summary-cards">
-    <div class="card">
-      <h3>진료 과목</h3>
-      <p>우울증</p>
-      <p>불안장애</p>
-      <p>ADHD</p>
-      <p>스트레스</p>
-      <p>공황장애</p>
-      <p>불면증 등</p>
-    </div>
+  <div class="card treatment-hours">
+    <h3>진료 시간</h3>
+    <p>월, 금 : 10:00 ~ 19:00</p>
+    <p>화, 목 : 10:00 ~ 20:00</p>
+    <p>토요일 : 10:00 ~ 13:00</p>
+    <p class="clinic-hours-bold">수, 일, 공휴일 휴진</p>
+  </div>
 
-    <div class="card">
-      <h3>진료 시간</h3>
-      <p>
-        월, 금 : 10:00 ~ 19:00<br>
-        화, 목 : 10:00 ~ 20:00<br>
-        토요일 : 10:00 ~ 13:00<br>
-        수, 일, 공휴일 휴진
-      </p>
+  <div class="location">
+    <h3>오시는 길</h3>
+    <div class="main-info-text">
+      <address>
+        서울시 구로구 디지털로 285<br>
+        에이스 트윈타워 1차 203호<br>
+        (태평양물산 맞은편, 주차 가능)
+      </address>
     </div>
+    <div id="map"></div>
+  </div>
+
+  <div class="card treatment-subjects">
+    <h3>진료 과목</h3>
+    <p>우울증</p>
+    <p>불안장애</p>
+    <p>ADHD</p>
+    <p>스트레스</p>
+    <p>공황장애</p>
+    <p>불면증 등</p>
   </div>
 
   <div class="reservation">
@@ -385,7 +158,7 @@
   <div class="reservation">
     <h3>재진 예약 안내</h3>
     <div class="main-info-text">
-      <p>아임파인 앱을 통해 재진 예약이 가능합니다.<br>아래 QR 코드를 통해 앱을 설치해주세요.</p>
+      <p><a href="#" onclick="showPopup()" style="color:#008080;font-weight:bold;text-decoration:none;">아임파인</a> 앱을 통해 재진 예약이 가능합니다.<br>아래 QR 코드를 통해 앱을 설치해주세요.</p>
       <div class="qr-container">
         <div>
           <p>📱 Android</p>
@@ -399,16 +172,11 @@
     </div>
   </div>
 
-  <div class="location">
-    <h3>오시는 길</h3>
-    <div class="main-info-text">
-      <address>
-        서울시 구로구 디지털로 285<br>
-        에이스 트윈타워 1차 203호<br>
-        (태평양물산 맞은편, 주차 가능)
-      </address>
+  <!-- 아임파인 안내 팝업 -->
+  <div id="popup" class="popup-container" onclick="closePopup()">
+    <div class="popup-content">
+      <img src="{{ url_for('static', filename='images/imfine.jpg') }}" alt="아임파인 안내">
     </div>
-    <div id="map"></div>
   </div>
 </div>
 
@@ -420,28 +188,51 @@
       console.error("❌ 카카오 API가 로드되지 않았습니다.");
       return;
     }
-
     kakao.maps.load(function () {
       const container = document.getElementById('map');
       const options = {
         center: new kakao.maps.LatLng(37.48427, 126.8949),
-        level: 2
+        level: 3 // 더 넓게 보기
       };
-
       const map = new kakao.maps.Map(container, options);
-
       const markerPosition = new kakao.maps.LatLng(37.48427, 126.8949);
-
       const marker = new kakao.maps.Marker({
         position: markerPosition,
         map: map
       });
-
-      const infowindow = new kakao.maps.InfoWindow({
-        content: '<div style="width: 160px; height: 40px; padding:5px; font-size:20px; color:#2196F3; text-align: center; line-height: 40px;">🩺푸른솔 정신과</div>'      });
-
-      infowindow.open(map, marker);
+      // 반응형 인포윈도우 width/padding
+      const infoWindowWidth = window.innerWidth >= 769 ? 240 : 180;
+      const infoWindowPadding = window.innerWidth >= 769 ? '12px 32px' : '10px 24px';
+      const overlayContent = `
+        <div style="
+          background: #008080;
+          color: #fff;
+          font-weight: bold;
+          border-radius: 10px;
+          padding: 6px 18px;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+          font-size: 1.1rem;
+          text-align: center;
+          min-width: 100px;
+          max-width: 220px;
+        ">
+          푸른솔 정신과
+        </div>
+      `;
+      const customOverlay = new kakao.maps.CustomOverlay({
+        position: markerPosition,
+        yAnchor: 0,
+        content: overlayContent
+      });
+      customOverlay.setMap(map);
     });
   });
+
+  function showPopup() {
+    document.getElementById("popup").style.display = "flex";
+  }
+  function closePopup() {
+    document.getElementById("popup").style.display = "none";
+  }
 </script>
 {% endblock %}

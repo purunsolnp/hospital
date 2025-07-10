@@ -1,12 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-<h1>휴진 일정</h1>
-<div id="calendar"></div>
+<h1>병원 일정</h1>
+
+{% if events %}
+  <div id="calendar"></div>
+{% else %}
+  <div style="text-align: center; padding: 3rem 0; color: #666; max-width: 900px; margin: 0 auto;">
+    <p style="font-size: 1.2rem; margin-bottom: 1rem;">📅 현재 등록된 일정이 없습니다.</p>
+    <p style="font-size: 1rem;">휴진, 학회, 단축진료 등의 일정이 등록되면 이곳에 표시됩니다.</p>
+  </div>
+{% endif %}
 
 <!-- FullCalendar CDN -->
 <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
 
+{% if events %}
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const calendarEl = document.getElementById('calendar');
@@ -23,6 +32,7 @@
     calendar.render();
   });
 </script>
+{% endif %}
 
 <style>
   #calendar {

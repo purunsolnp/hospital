@@ -2,7 +2,7 @@ import os
 import time
 import pandas as pd
 import requests
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, abort
 from dotenv import load_dotenv
 
 # ✅ 환경 변수 로드 (카카오 API 키 저장)
@@ -14,13 +14,36 @@ app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 # ✅ 카카오 맵 API 키 가져오기
 KAKAO_MAP_API_KEY = os.getenv("KAKAO_MAP_API_KEY")
+
+# ✅ Google Sheets (공지사항 데이터)
+NOTICES_SHEET_URL = "https://docs.google.com/spreadsheets/d/1UbfL8PgO-KtRy7RqsQeNhixLTRFUnUiOFmaGmu0IV7w/export?format=csv"
+
+# ✅ Google Sheets 구조 예시
+# | ID | 제목 | 내용 | 날짜 | 종료일 | 반복 | 요일 | 카테고리 | 공지노출 | 의사명 |
+def get_notices_data():
+    """Google Sheets에서 공지사항 데이터를 안전하게 가져오는 함수"""
+    try:
+        df = pd.read_csv(NOTICES_SHEET_URL)
+        # 빈 DataFrame 체크
+        if df.empty:
+            print("⚠️ Google Sheets에서 빈 데이터를 받았습니다.")
+            return pd.DataFrame()
+        # 필수 컬럼 체크 (ID, 제목, 날짜는 없어도 에러 없이 동작)
+        # 빈 행 제거 (모든 컬럼이 NaN인 행)
+        df = df.dropna(how='all')
+        if df.empty:
+            print("⚠️ 모든 행이 비어있어 데이터가 없습니다.")
+            return pd.DataFrame()
+        print(f"✅ 성공적으로 {len(df)}개 행의 데이터를 로드했습니다.")
+        return df
+    except Exception as e:
+        print(f"❌ Google Sheets 데이터 로드 중 에러: {e}")
+        return pd.DataFrame()
+
 @app.route("/")
 @app.route("/index")
 def index():
     return render_template("index.html", kakao_api_key=KAKAO_MAP_API_KEY)
-
-# ✅ Google Sheets (공지사항 데이터)
-NOTICES_SHEET_URL = "https://docs.google.com/spreadsheets/d/1UbfL8PgO-KtRy7RqsQeNhixLTRFUnUiOFmaGmu0IV7w/export?format=csv"
 
 # ✅ 진료과목 페이지 (정적 HTML)
 @app.route("/treatments")
@@ -41,83 +64,146 @@ def laws():
     
 @app.route("/notices")
 def notice_list():
-    df = pd.read_csv(NOTICES_SHEET_URL)
-    df["날짜"] = pd.to_datetime(df["날짜"], errors="coerce")
-    df["상단고정"] = df["상단고정"].fillna(False).astype(bool)
-
-    # ✅ 상단 고정 공지를 먼저 정렬한 후, 날짜순 정렬
-    df = df.sort_values(by=["상단고정", "날짜"], ascending=[False, False])
-
-    notices = df.to_dict(orient="records")
-    return render_template("notices_list.html", notices=notices)
+    df = get_notices_data()
+    if df.empty:
+        return render_template("notices_list.html", notices=[])
+    try:
+        # 공지노출 컬럼이 있으면 TRUE/비어있음만 노출, FALSE/N/0 등은 제외
+        if "공지노출" in df.columns:
+            df = df[(df["공지노출"].isna()) | (df["공지노출"].astype(str).str.upper().isin(["TRUE", "", "Y", "YES", "1"]))]
+        # 상단고정 컬럼이 있으면 처리, 없으면 False로 설정
+        if "상단고정" in df.columns:
+            df["상단고정"] = df["상단고정"].fillna(False).astype(bool)
+        else:
+            df["상단고정"] = False
+        # ID가 없는 경우를 대비해 안전하게 처리
+        if "ID" in df.columns:
+            # ID가 숫자가 아니면 변환, 결측치는 큰 값으로 대체
+            df["ID"] = pd.to_numeric(df["ID"], errors="coerce")
+            df["ID"] = df["ID"].fillna(9999999)
+        else:
+            df["ID"] = 9999999
+        # 정렬: 상단고정(True 먼저), 그 다음 ID 오름차순
+        df = df.sort_values(by=["상단고정", "ID"], ascending=[False, True])
+        notices = []
+        for _, row in df.iterrows():
+            notice = row.to_dict()
+            # 날짜가 있으면 문자열로 변환
+            if "날짜" in row and pd.notnull(row["날짜"]):
+                try:
+                    date_obj = pd.to_datetime(row["날짜"], errors="coerce")
+                    if pd.notnull(date_obj):
+                        notice["날짜"] = date_obj.strftime('%Y-%m-%d')
+                    else:
+                        notice["날짜"] = ""
+                except:
+                    notice["날짜"] = str(row["날짜"])
+            else:
+                notice["날짜"] = ""
+            notices.append(notice)
+        return render_template("notices_list.html", notices=notices)
+    except Exception as e:
+        print(f"❌ 공지사항 목록 처리 중 에러: {e}")
+        return render_template("notices_list.html", notices=[])
 
 @app.route("/notices/<int:notice_id>")
 def notice_detail(notice_id):
-    df = pd.read_csv(NOTICES_SHEET_URL)
-    try:
-        row = df[df["ID"] == notice_id].iloc[0]
-    except IndexError:
+    df = get_notices_data()
+    
+    if df.empty:
         abort(404)
+    
+    try:
+        # 해당 ID 찾기
+        matching_rows = df[df["ID"] == notice_id]
+        if matching_rows.empty:
+            abort(404)
+            
+        row = matching_rows.iloc[0]
+        
+        # 날짜 처리
+        date_str = ""
+        if pd.notnull(row["날짜"]):
+            try:
+                date_obj = pd.to_datetime(row["날짜"], errors="coerce")
+                if pd.notnull(date_obj):
+                    date_str = date_obj.strftime('%Y-%m-%d')
+            except:
+                date_str = ""
 
-    notice = {
-        "id": int(row["ID"]),
-        "제목": row["제목"],
-        "내용": row["내용"],
-        "날짜": pd.to_datetime(row["날짜"], errors="coerce").strftime('%Y-%m-%d') if pd.notnull(row["날짜"]) else ""
-    }
-    return render_template("notice_detail.html", notice=notice)
-
+        notice = {
+            "id": int(row["ID"]),
+            "제목": str(row["제목"]) if pd.notnull(row["제목"]) else "제목 없음",
+            "내용": str(row["내용"]) if "내용" in row and pd.notnull(row["내용"]) else "",
+            "날짜": date_str
+        }
+        return render_template("notice_detail.html", notice=notice)
+        
+    except Exception as e:
+        print(f"❌ 공지사항 상세 처리 중 에러: {e}")
+        abort(404)
 
 @app.route("/calendar")
 def calendar_view():
-    df = pd.read_csv(NOTICES_SHEET_URL)
-    df["날짜"] = pd.to_datetime(df["날짜"], errors="coerce")
-    df["종료일"] = pd.to_datetime(df.get("종료일", ""), errors="coerce")
-
-    색상맵 = {
-        "휴진": "#ff6b6b",
-        "학회": "#4dabf7",
-        "단축진료": "#ffa94d",
-        "기타": "#ccc"
-    }
-
-    events = []
-    for _, row in df.iterrows():
-        # ✅ NaN 여부 체크하고 기본값 대체
-        category = row.get("카테고리")
-        if pd.isna(category) or str(category).strip() == "":
-            category = "기타"
+    import datetime
+    df = get_notices_data()
+    if df.empty:
+        return render_template("calendar.html", events=[])
+    try:
+        # 날짜/종료일 변환
+        if "날짜" in df.columns:
+            df["날짜"] = pd.to_datetime(df["날짜"], errors="coerce")
         else:
-            category = str(category).strip()
-
-        doctor = row.get("의사명")
-        if pd.isna(doctor):
-            doctor = ""
+            df["날짜"] = pd.NaT
+        if "종료일" in df.columns:
+            df["종료일"] = pd.to_datetime(df["종료일"], errors="coerce")
         else:
-            doctor = str(doctor).strip()
-
-        title_base = row.get("제목")
-        if pd.isna(title_base) or str(title_base).strip() == "":
-            title_base = "일정"
-        else:
-            title_base = str(title_base).strip()
-
-        title_prefix = f"{doctor} " if doctor else ""
-        title = f"{title_prefix}{category}: {title_base}"
-
-        event = {
-            "title": title,
-            "start": row["날짜"].strftime("%Y-%m-%d"),
-            "allDay": True,
-            "color": 색상맵.get(category, 색상맵["기타"])
-        }
-
-        if pd.notnull(row["종료일"]):
-            event["end"] = row["종료일"].strftime("%Y-%m-%d")
-
-        events.append(event)
-
-    return render_template("calendar.html", events=events)
+            df["종료일"] = pd.NaT
+        색상맵 = {"휴진": "#ff6b6b", "학회": "#4dabf7", "단축진료": "#ffa94d", "기타": "#ccc"}
+        events = []
+        today = datetime.date.today()
+        end_range = today + datetime.timedelta(days=60)  # 2달치 반복 표시
+        for _, row in df.iterrows():
+            # 반복/요일 휴진 처리
+            반복 = str(row.get("반복", "")).strip()
+            요일 = str(row.get("요일", "")).strip()
+            category = str(row.get("카테고리", "")).strip() if not pd.isna(row.get("카테고리")) else "기타"
+            doctor = str(row.get("의사명", "")).strip() if not pd.isna(row.get("의사명")) else ""
+            title_base = str(row.get("제목", "")).strip() if not pd.isna(row.get("제목")) else "일정"
+            title_prefix = f"{doctor} " if doctor else ""
+            title = f"{title_prefix}{category}: {title_base}"
+            # 반복 휴진(매주 요일)
+            if 반복 in ["매주", "WEEKLY"] and 요일:
+                weekday_map = {"월요일":0, "화요일":1, "수요일":2, "목요일":3, "금요일":4, "토요일":5, "일요일":6}
+                weekday_num = weekday_map.get(요일)
+                if weekday_num is not None:
+                    d = today
+                    while d <= end_range:
+                        if d.weekday() == weekday_num:
+                            events.append({
+                                "title": title,
+                                "start": d.strftime("%Y-%m-%d"),
+                                "allDay": True,
+                                "color": 색상맵.get(category, 색상맵["기타"])
+                            })
+                        d += datetime.timedelta(days=1)
+                continue  # 반복휴진은 날짜 기반 이벤트로 중복 생성 방지
+            # 날짜 기반 이벤트
+            if pd.notnull(row["날짜"]):
+                event = {
+                    "title": title,
+                    "start": row["날짜"].strftime("%Y-%m-%d"),
+                    "allDay": True,
+                    "color": 색상맵.get(category, 색상맵["기타"])
+                }
+                if pd.notnull(row["종료일"]):
+                    end_date = row["종료일"] + pd.Timedelta(days=1)
+                    event["end"] = end_date.strftime("%Y-%m-%d")
+                events.append(event)
+        return render_template("calendar.html", events=events)
+    except Exception as e:
+        print(f"❌ 달력 처리 중 에러: {e}")
+        return render_template("calendar.html", events=[])
 
 @app.route("/about")
 def about():
