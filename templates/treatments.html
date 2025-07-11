@@ -11,8 +11,8 @@
     <button class="tab-button" onclick="showTab('adhd')">ADHD</button>
   </div>
   <div class="tab-row">
-    <button class="tab-button" onclick="showTab('panic')">공황장애</button>
     <button class="tab-button" onclick="showTab('insomnia')">불면증</button>
+    <button class="tab-button" onclick="showTab('panic')">공황장애</button>
     <button class="tab-button" onclick="showTab('stress')">스트레스</button>
   </div>
 </div>
@@ -363,6 +363,8 @@
   transition: background 0.2s, color 0.2s;
   margin-bottom: 0;
   min-width: 120px;
+  width: 180px;
+  box-sizing: border-box;
 }
 .tab-button.active, .tab-button:focus {
   background: #008080;
@@ -379,6 +381,7 @@
     padding: 0.7rem 1.1rem;
     font-size: 1rem;
     min-width: 90px;
+    width: 100%;
   }
 }
 </style>
