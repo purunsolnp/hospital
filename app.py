@@ -159,12 +159,10 @@ def calendar_view():
             df["종료일"] = pd.to_datetime(df["종료일"], errors="coerce")
         else:
             df["종료일"] = pd.NaT
-        색상맵 = {"휴진": "#ff6b6b", "학회": "#4dabf7", "단축진료": "#ffa94d", "기타": "#ccc"}
+        색상맵 = {"휴진": "#ff6b6b", "학회": "#4dabf7", "단축진료": "#ffa94d", "진료": "#4dabf7", "기타": "#ccc"}
         events = []
         today = datetime.date.today()
-        end_range = today + datetime.timedelta(days=60)  # 2달치 반복 표시
         for _, row in df.iterrows():
-            # 반복/요일 휴진 처리
             반복 = str(row.get("반복", "")).strip()
             요일 = str(row.get("요일", "")).strip()
             category = str(row.get("카테고리", "")).strip() if not pd.isna(row.get("카테고리")) else "기타"
@@ -172,14 +170,29 @@ def calendar_view():
             title_base = str(row.get("제목", "")).strip() if not pd.isna(row.get("제목")) else "일정"
             title_prefix = f"{doctor} " if doctor else ""
             title = f"{title_prefix}{category}: {title_base}"
-            # 반복 휴진(매주 요일)
+
+            # 예외일 처리
+            exception_dates = []
+            if "예외일" in row and pd.notnull(row["예외일"]):
+                exception_dates = [d.strip() for d in str(row["예외일"]).split(",") if d.strip()]
+                # 문자열을 date로 변환 (형식 오류는 무시)
+                parsed_exceptions = []
+                for d in exception_dates:
+                    try:
+                        parsed_exceptions.append(datetime.datetime.strptime(d, "%Y-%m-%d").date())
+                    except Exception:
+                        pass
+                exception_dates = parsed_exceptions
+
+            # 매주 반복
             if 반복 in ["매주", "WEEKLY"] and 요일:
                 weekday_map = {"월요일":0, "화요일":1, "수요일":2, "목요일":3, "금요일":4, "토요일":5, "일요일":6}
                 weekday_num = weekday_map.get(요일)
                 if weekday_num is not None:
-                    d = today
-                    while d <= end_range:
-                        if d.weekday() == weekday_num:
+                    d = row["날짜"].date() if pd.notnull(row["날짜"]) else today
+                    end_date = row["종료일"].date() if pd.notnull(row["종료일"]) else datetime.date(2099, 1, 1)
+                    while d <= end_date:
+                        if d.weekday() == weekday_num and d not in exception_dates:
                             events.append({
                                 "title": title,
                                 "start": d.strftime("%Y-%m-%d"),
@@ -187,7 +200,48 @@ def calendar_view():
                                 "color": 색상맵.get(category, 색상맵["기타"])
                             })
                         d += datetime.timedelta(days=1)
-                continue  # 반복휴진은 날짜 기반 이벤트로 중복 생성 방지
+                continue
+            # 매년 반복
+            if 반복 in ["매년", "YEARLY"] and pd.notnull(row["날짜"]):
+                start_date = row["날짜"].date()
+                end_date = row["종료일"].date() if pd.notnull(row["종료일"]) else datetime.date(2099, 1, 1)
+                d = start_date
+                while d <= end_date:
+                    if d not in exception_dates:
+                        events.append({
+                            "title": title,
+                            "start": d.strftime("%Y-%m-%d"),
+                            "allDay": True,
+                            "color": 색상맵.get(category, 색상맵["기타"])
+                        })
+                    try:
+                        d = d.replace(year=d.year + 1)
+                    except ValueError:
+                        # 2월 29일 등 윤년 예외 처리
+                        d = d.replace(month=3, day=1, year=d.year + 1)
+                continue
+            # 매월 반복
+            if 반복 in ["매월", "MONTHLY"] and pd.notnull(row["날짜"]):
+                start_date = row["날짜"].date()
+                end_date = row["종료일"].date() if pd.notnull(row["종료일"]) else datetime.date(2099, 1, 1)
+                d = start_date
+                while d <= end_date:
+                    if d not in exception_dates:
+                        events.append({
+                            "title": title,
+                            "start": d.strftime("%Y-%m-%d"),
+                            "allDay": True,
+                            "color": 색상맵.get(category, 색상맵["기타"])
+                        })
+                    # 다음 달로 이동
+                    year = d.year + (d.month // 12)
+                    month = d.month % 12 + 1
+                    day = min(d.day, [31,29 if year%4==0 and (year%100!=0 or year%400==0) else 28,31,30,31,30,31,31,30,31,30,31][month-1])
+                    try:
+                        d = datetime.date(year, month, day)
+                    except ValueError:
+                        d = datetime.date(year, month, 1)
+                continue
             # 날짜 기반 이벤트
             if pd.notnull(row["날짜"]):
                 event = {
