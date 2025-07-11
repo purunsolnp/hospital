@@ -248,6 +248,12 @@ h3 {
     .card span {
         font-size: 1.3rem;
     }
+    .card p, .card li {
+      font-size: 1.2em;
+    }
+    .profile-section p, .profile-section li {
+      font-size: 1.4em;
+    }
 }
 @media screen and (max-width: 480px) {
     .card, .profile-section, .guide-section, .info-section, .info-card, .faq-item {
@@ -449,5 +455,11 @@ h3 {
     padding: 0.89rem 1.53rem;
     font-size: 1.4rem;
     min-width: 178px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .profile-section * {
+    font-size: 1.4em !important;
   }
 }
