@@ -104,6 +104,73 @@
     height: auto;
     border-radius: 10px;
   }
+  .greeting-slider {
+    width: 100%;
+    max-width: 900px;
+    margin: 0.7rem auto 1.2rem auto;
+    text-align: center;
+    position: relative;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  @media (max-width: 768px) {
+    .greeting-slider {
+      max-width: 100%;
+      margin: 0.5rem 0 1rem 0;
+    }
+  }
+  .slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 0.7rem;
+  }
+  .slider-dot {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #d0d7d7;
+    display: inline-block;
+    cursor: pointer;
+    transition: background 0.2s;
+    border: none;
+    outline: none;
+  }
+  .slider-dot.active {
+    background: #008080;
+  }
+  .slider-btn {
+    background: #008080;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .slider-btn:hover {
+    background: #005f5f;
+  }
+  .mobile-greeting-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    margin: 0 auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+    object-fit: cover;
+    background: #f4f4f4;
+  }
 </style>
 {% endblock %}
 
@@ -111,6 +178,13 @@
 <div class="container">
   <h1>푸른솔 정신건강의학과에<br> 오신 것을 환영합니다</h1>
   <p style="font-size:1.4rem;">다시금 되찾을 당신의 일상을 응원합니다.</p>
+  <div class="greeting-slider">
+    <img id="greetingSliderImg"
+         src="{{ url_for('static', filename='images/FIM_8902.jpg') }}"
+         alt="병원 인사 이미지"
+         class="mobile-greeting-img">
+    <div class="slider-dots" id="sliderDots"></div>
+  </div>
   <p style="font-size:1.4rem; color:#008080; font-weight:bold; margin-top:0.5em;">영어 진료 가능합니다. (English available)</p>
 
   <div class="card treatment-hours">
@@ -124,10 +198,10 @@
   <div class="location">
     <h3>오시는 길</h3>
     <div class="main-info-text">
-      <address>
+      <address style="font-style: normal; font-size: 1.25rem; line-height: 1.7; color: #333;">
         서울시 구로구 디지털로 285<br>
         에이스 트윈타워 1차 203호<br>
-        (태평양물산 맞은편, 주차 가능)
+        (태평양물산 맞은편, 우리 은행 건물 2층, 주차 가능)
       </address>
     </div>
     <div id="map"></div>
@@ -261,5 +335,105 @@
   function closePopup() {
     document.getElementById("popup").style.display = "none";
   }
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const images = [
+      "{{ url_for('static', filename='images/logo.jpg') }}",
+      "{{ url_for('static', filename='images/lobby0.jpg') }}",
+      "{{ url_for('static', filename='images/lobby1.jpg') }}",
+      "{{ url_for('static', filename='images/lobby2.jpg') }}",
+      "{{ url_for('static', filename='images/lobby3.jpg') }}"
+    ];
+    let idx = 0;
+    const imgEl = document.getElementById("greetingSliderImg");
+    const dotsContainer = document.getElementById("sliderDots");
+
+    // dot 생성
+    function renderDots() {
+      dotsContainer.innerHTML = "";
+      images.forEach((_, i) => {
+        const dot = document.createElement("button");
+        dot.className = "slider-dot" + (i === idx ? " active" : "");
+        dot.setAttribute("aria-label", `이미지 ${i+1}`);
+        dot.onclick = function() {
+          idx = i;
+          updateSlider();
+        };
+        dotsContainer.appendChild(dot);
+      });
+    }
+
+    function updateSlider() {
+      imgEl.src = images[idx];
+      renderDots();
+    }
+
+    // 스와이프/드래그 이벤트
+    let startX = null;
+    let dragging = false;
+
+    // 터치 이벤트 (모바일)
+    imgEl.addEventListener('touchstart', function(e) {
+      if (e.touches.length === 1) {
+        startX = e.touches[0].clientX;
+        dragging = true;
+      }
+    });
+    imgEl.addEventListener('touchmove', function(e) {
+      if (!dragging) return;
+      // prevent scroll
+      e.preventDefault();
+    }, { passive: false });
+    imgEl.addEventListener('touchend', function(e) {
+      if (!dragging || startX === null) return;
+      const endX = e.changedTouches[0].clientX;
+      const diff = endX - startX;
+      if (Math.abs(diff) > 40) {
+        if (diff < 0) { // left swipe
+          idx = (idx + 1) % images.length;
+        } else { // right swipe
+          idx = (idx - 1 + images.length) % images.length;
+        }
+        updateSlider();
+      }
+      dragging = false;
+      startX = null;
+    });
+
+    // 마우스 드래그 (PC)
+    imgEl.addEventListener('mousedown', function(e) {
+      startX = e.clientX;
+      dragging = true;
+      document.body.style.userSelect = 'none'; // 드래그 중 텍스트 선택 방지
+    });
+    imgEl.addEventListener('mousemove', function(e) {
+      if (!dragging) return;
+      e.preventDefault();
+    });
+    imgEl.addEventListener('mouseup', function(e) {
+      if (!dragging || startX === null) return;
+      const endX = e.clientX;
+      const diff = endX - startX;
+      if (Math.abs(diff) > 40) {
+        if (diff < 0) {
+          idx = (idx + 1) % images.length;
+        } else {
+          idx = (idx - 1 + images.length) % images.length;
+        }
+        updateSlider();
+      }
+      dragging = false;
+      startX = null;
+      document.body.style.userSelect = '';
+    });
+    imgEl.addEventListener('mouseleave', function() {
+      dragging = false;
+      startX = null;
+      document.body.style.userSelect = '';
+    });
+
+    // 최초 렌더
+    updateSlider();
+  });
 </script>
 {% endblock %}
