@@ -4,6 +4,7 @@ import pandas as pd
 import requests
 from flask import Flask, render_template, jsonify, abort
 from dotenv import load_dotenv
+import re
 
 # ✅ 환경 변수 로드 (카카오 API 키 저장)
 load_dotenv()
@@ -39,6 +40,12 @@ def get_notices_data():
     except Exception as e:
         print(f"❌ Google Sheets 데이터 로드 중 에러: {e}")
         return pd.DataFrame()
+
+def clean_notice_content(content):
+    if not isinstance(content, str):
+        return content
+    # 2개 이상의 연속된 줄바꿈을 하나로
+    return re.sub(r'(\n\s*){2,}', '\n', content)
 
 @app.route("/")
 @app.route("/index")
@@ -100,6 +107,9 @@ def notice_list():
                     notice["날짜"] = str(row["날짜"])
             else:
                 notice["날짜"] = ""
+            # 본문 내용 전처리
+            if "내용" in notice and pd.notnull(notice["내용"]):
+                notice["내용"] = clean_notice_content(str(notice["내용"]))
             notices.append(notice)
         return render_template("notices_list.html", notices=notices)
     except Exception as e:
@@ -134,7 +144,7 @@ def notice_detail(notice_id):
         notice = {
             "id": int(row["ID"]),
             "제목": str(row["제목"]) if pd.notnull(row["제목"]) else "제목 없음",
-            "내용": str(row["내용"]) if "내용" in row and pd.notnull(row["내용"]) else "",
+            "내용": clean_notice_content(str(row["내용"])) if "내용" in row and pd.notnull(row["내용"]) else "",
             "날짜": date_str
         }
         return render_template("notice_detail.html", notice=notice)

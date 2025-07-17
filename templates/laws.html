@@ -3,14 +3,127 @@
 {% block content %}
 <h1 style="text-align: center;">이용 안내</h1>
 
-<!-- ✅ 개인정보 처리방침 / 비급여 안내 탭 -->
+<!-- ✅ 개인정보 처리방침 / 비급여 안내 / 대리처방 안내 탭 -->
 <div class="tab-container">
-    <button class="tab-button active" onclick="showTab('privacy-policy')">개인정보 처리방침</button>
+    <button class="tab-button active" onclick="showTab('proxy-prescription')">대리처방 안내</button>
+    <button class="tab-button" onclick="showTab('privacy-policy')">개인정보 처리방침</button>
     <button class="tab-button" onclick="showTab('non-insurance')">비급여 안내</button>
 </div>
 
+<!-- ✅ 대리처방 안내 -->
+<div id="proxy-prescription" class="tab-content active">
+    <section class="proxy-section">
+        <h2>대리처방 안내</h2>
+        <div class="info-highlight">
+          <span>의료법에 따라 환자 <u>대면진료가 원칙</u>입니다.<br>
+          단, 아래 요건에 해당하는 경우에만 직접 진찰한 의사가<br>대리수령자에게 처방전을 교부할 수 있습니다.</span>
+        </div>
+
+        <p style="font-size:0.98em; color:#888;">
+            ※ 의료법 제17조의2, 시행령 제10조의2, 시행규칙 제12조의2 [시행일: 2020. 2. 28]
+        </p>
+
+        <hr class="section-divider">
+        <h3 class="section-title"><span class="icon">✅</span> 대리처방이 가능한 경우</h3>
+        <div class="table-wrapper">
+        <table class="info-table">
+            <thead>
+                <tr><th>구분</th><th>설명</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>환자의 의식이 없는 경우</td>
+                    <td>의식이 없어서 본인이 처방을 받을 수 없는 경우</td>
+                </tr>
+                <tr>
+                    <td>아래 3가지 조건을 모두 충족</td>
+                    <td>
+                        <ol style="margin-left:1.2em;">
+                            <li>환자의 거동이 현저히 곤란함<br><span style="color:#888;">(예: 교정시설 수용자, 정신질환자, 치매 노인 등)</span></li>
+                            <li>같은 질환에 대해 계속 진료를 받아온 경우</li>
+                            <li>오랜 기간 같은 처방이 이루어진 경우<br><span style="color:#888;">※ 단, <b>의학적 판단</b>에 따라 안전성이 인정되는 경우에만 가능하며, 의료인은 대리처방을 거절할 수 있습니다.</span></li>
+                        </ol>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        </div>
+
+        <hr class="section-divider">
+        <h3 class="section-title"><span class="icon">👤</span> 대리수령자의 범위</h3>
+        <div class="table-wrapper">
+        <table class="info-table">
+            <thead><tr><th>구분</th><th>대리수령자</th></tr></thead>
+            <tbody>
+                <tr><td>직계가족</td><td>부모 및 자녀(직계존속·비속)</td></tr>
+                <tr><td>배우자</td><td>배우자 및 배우자의 부모(직계존속)</td></tr>
+                <tr><td>형제/자매</td><td>형제·자매</td></tr>
+                <tr><td>기타 가족</td><td>사위, 며느리(직계비속의 배우자)</td></tr>
+                <tr><td>노인복지시설</td><td>노인의료복지시설 종사자<br><span style="color:#888; font-size:0.97em;">(노인복지법상 노인요양시설, 노인요양공동생활가정)</span></td></tr>
+                <tr><td>기타</td><td>보건복지부장관이 인정하는 사람<br><span style="color:#888; font-size:0.97em;">(교정시설 직원, 장애인복지법상 장애인거주시설 종사자 등)</span></td></tr>
+            </tbody>
+        </table>
+        </div>
+
+        <hr class="section-divider">
+        <h3 class="section-title"><span class="icon">📄</span> 구비서류</h3>
+        <div class="table-wrapper">
+        <table class="info-table">
+            <thead><tr><th>서류명</th><th>비고</th></tr></thead>
+            <tbody>
+                <tr><td>대리수령자의 신분증</td><td>사본 가능</td></tr>
+                <tr><td>환자의 신분증</td><td>사본 가능<br><span style="color:#888; font-size:0.97em;">만 17세 미만으로 주민등록증이 없는 경우 제외</span></td></tr>
+                <tr><td>관계를 증명할 수 있는 서류</td><td>가족관계증명서, 주민등록등본, 재직증명서 등</td></tr>
+                <tr><td>대리처방 동의서</td><td>작성하여 내원</td></tr>
+            </tbody>
+        </table>
+        </div>
+        <div style="text-align:center; margin-bottom:2em;">
+          <a href="http://www.bmmh.or.kr/upload/board/%EB%8C%80%EB%A6%AC%EC%A7%84%EB%A3%8C(%EC%B2%98%EB%B0%A9)%EB%8F%99%EC%9D%98%EC%84%9C.pdf" target="_blank" class="download-btn">대리처방 동의서 다운로드</a>
+        </div>
+
+        <style>
+        .download-btn {
+          display: inline-block;
+          background: #008080;
+          color: #fff !important;
+          font-weight: bold;
+          padding: 0.9em 2.2em;
+          border-radius: 2em;
+          font-size: 1.1em;
+          text-decoration: none;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+          transition: background 0.2s;
+          margin-top: 0.5em;
+        }
+        .download-btn:hover {
+          background: #005f5f;
+          color: #fff;
+        }
+        .section-divider {
+          border: none;
+          border-top: 2px solid #e0e0e0;
+          margin: 2.2em 0 1.5em 0;
+        }
+        .section-title {
+          color: #008080;
+          font-size: 1.25em;
+          font-weight: bold;
+          margin-top: 2em;
+          margin-bottom: 1em;
+          display: flex;
+          align-items: center;
+          gap: 0.5em;
+        }
+        .section-title .icon {
+          font-size: 1.2em;
+        }
+        </style>
+    </section>
+</div>
+
 <!-- ✅ 개인정보 처리방침 -->
-<div id="privacy-policy" class="tab-content active">
+<div id="privacy-policy" class="tab-content">
     <section class="policy-section">
         <h2>🔒 개인정보 처리방침</h2>
         <p>푸른솔 정신건강의학과(이하 ‘본 병원’)는<br> 개인정보 보호를 중요하게 생각하며,<br> 관련 법령을 준수하고 있습니다.</p>
@@ -39,7 +152,7 @@
 <!-- ✅ 스타일 개선 -->
 <style>
     /* 탭 관련 스타일(.tab-button, .tab-container, .tab-content, .tab-button.active 등) 삭제, policy-section, non-insurance-section, image-container 등만 남김 */
-    .policy-section, .non-insurance-section {
+    .policy-section, .non-insurance-section, .proxy-section {
         padding: 20px;
         background: #f8f8f8;
         border-radius: 8px;
@@ -47,6 +160,56 @@
     .image-container img {
         max-width: 100%;
         height: auto;
+    }
+    .proxy-section ol, .proxy-section ul {
+        margin-left: 1.2em;
+        margin-bottom: 1.2em;
+    }
+    .proxy-section li {
+        margin-bottom: 0.5em;
+        line-height: 1.7;
+    }
+    .proxy-section .table-wrapper {
+        overflow-x: auto;
+        margin-bottom: 1.5em;
+    }
+    .proxy-section .info-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: #fff;
+        margin: 0 auto 1em auto;
+        font-size: 1.05em;
+    }
+    .proxy-section .info-table th, .proxy-section .info-table td {
+        border: 1px solid #cce2e2;
+        padding: 0.7em 0.8em;
+        text-align: left;
+    }
+    .proxy-section .info-table th {
+        background: #e6f4f1;
+        color: #008080;
+        font-weight: bold;
+    }
+    .proxy-section .info-table tr:nth-child(even) {
+        background: #f8f8f8;
+    }
+    .info-highlight {
+      background: #e6f4f1;
+      color: #008080;
+      font-weight: bold;
+      padding: 1.2em 1.3em 1.1em 1.3em;
+      border-radius: 10px;
+      margin-bottom: 1.5em;
+      font-size: 1.25em;
+      line-height: 1.7;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    @media (max-width: 600px) {
+      .info-highlight {
+        font-size: 1.08em;
+        padding: 0.9em 0.5em;
+      }
     }
 </style>
 

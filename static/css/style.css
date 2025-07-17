@@ -72,6 +72,19 @@ h3 {
     margin: 2rem auto;
     padding: 20px;
     text-align: left;
+    word-break: break-word; /* 긴 단어 자동 줄바꿈 */
+    overflow-wrap: break-word; /* 추가 줄바꿈 지원 */
+    white-space: normal; /* 한 글자씩 세로로 출력되는 문제 해결 */
+    font-size: 1.1rem;
+    line-height: 1.7;
+    box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .notices-container, .notice-detail {
+    font-size: 1rem;
+    padding: 0.7rem;
+  }
 }
 
 .notices-container ul {
