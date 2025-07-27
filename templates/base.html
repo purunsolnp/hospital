@@ -294,10 +294,19 @@
         .header-title.mobile-only {
           display: block;
           flex: 1;
+          font-size: 2.25rem; /* 1.5배 증가: 1.5rem * 1.5 = 2.25rem */
         }
         .header {
-          padding: 0.8rem 1rem;
-          height: 64px;
+          padding: 1.2rem 1.5rem; /* 1.5배 증가: 0.8rem * 1.5 = 1.2rem, 1rem * 1.5 = 1.5rem */
+          height: 96px; /* 1.5배 증가: 64px * 1.5 = 96px */
+        }
+        .hamburger {
+          width: 66px; /* 1.5배 증가: 44px * 1.5 = 66px */
+          height: 66px; /* 1.5배 증가: 44px * 1.5 = 66px */
+          font-size: 3rem; /* 1.5배 증가: 2rem * 1.5 = 3rem */
+        }
+        .hamburger-icon {
+          font-size: 3rem; /* 1.5배 증가: 2rem * 1.5 = 3rem */
         }
       }
       @media screen and (min-width: 1025px) {
@@ -420,29 +429,33 @@
       /* 작은 모바일 화면 */
       @media screen and (max-width: 480px) {
         .header {
-          padding: 0.8rem 1rem;
-          height: 70px;
+          padding: 1.2rem 1.5rem; /* 1.5배 증가: 0.8rem * 1.5 = 1.2rem, 1rem * 1.5 = 1.5rem */
+          height: 105px; /* 1.5배 증가: 70px * 1.5 = 105px */
+        }
+        
+        .header-title.mobile-only {
+          font-size: 2.25rem; /* 1.5배 증가: 1.5rem * 1.5 = 2.25rem */
         }
         
         .logo img {
-          height: 50px;
-          max-width: 120px;
+          height: 75px; /* 1.5배 증가: 50px * 1.5 = 75px */
+          max-width: 180px; /* 1.5배 증가: 120px * 1.5 = 180px */
         }
         
         .hamburger {
-          font-size: 1.8rem;
-          width: 35px;
-          height: 35px;
+          font-size: 2.7rem; /* 1.5배 증가: 1.8rem * 1.5 = 2.7rem */
+          width: 52.5px; /* 1.5배 증가: 35px * 1.5 = 52.5px */
+          height: 52.5px; /* 1.5배 증가: 35px * 1.5 = 52.5px */
         }
 
         .mobile-menu {
-          min-width: 180px;
-          padding: 1.2rem;
+          min-width: 270px; /* 1.5배 증가: 180px * 1.5 = 270px */
+          padding: 1.8rem; /* 1.5배 증가: 1.2rem * 1.5 = 1.8rem */
         }
 
         .mobile-menu a {
-          font-size: 1.2rem;
-          padding: 1rem 0;
+          font-size: 1.8rem; /* 1.5배 증가: 1.2rem * 1.5 = 1.8rem */
+          padding: 1.5rem 0; /* 1.5배 증가: 1rem * 1.5 = 1.5rem */
         }
       }
 

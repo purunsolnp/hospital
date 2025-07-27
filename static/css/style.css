@@ -298,14 +298,14 @@ h3 {
 /* ✅ 작은 모바일 화면에서 메뉴 버튼 크기 조정 */
 @media screen and (max-width: 480px) {
     .hamburger {
-        font-size: 1.4rem;
-        padding: 0.8rem;
+        font-size: 2.1rem; /* 1.5배 증가: 1.4rem * 1.5 = 2.1rem */
+        padding: 1.2rem; /* 1.5배 증가: 0.8rem * 1.5 = 1.2rem */
     }
     
     .logo img {
-        height: 95px;
+        height: 142.5px; /* 1.5배 증가: 95px * 1.5 = 142.5px */
         max-width: 80%;
-        min-height: 80px;
+        min-height: 120px; /* 1.5배 증가: 80px * 1.5 = 120px */
     }
 }
 
@@ -354,7 +354,7 @@ h3 {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        padding: 1rem;
+        padding: 1.5rem; /* 1.5배 증가: 1rem * 1.5 = 1.5rem */
     }
 
     .logo {
@@ -365,18 +365,18 @@ h3 {
     }
 
     .logo img {
-        height: 85px;
+        height: 127.5px; /* 1.5배 증가: 85px * 1.5 = 127.5px */
         max-width: 85%;
-        min-height: 70px;
+        min-height: 105px; /* 1.5배 증가: 70px * 1.5 = 105px */
     }
 
     .hamburger {
         display: block;
-        font-size: 1.6rem;
+        font-size: 2.4rem; /* 1.5배 증가: 1.6rem * 1.5 = 2.4rem */
         background: none;
         border: none;
         cursor: pointer;
-        padding: 0.5rem;
+        padding: 0.75rem; /* 1.5배 증가: 0.5rem * 1.5 = 0.75rem */
         color: #008080;
     }
 
