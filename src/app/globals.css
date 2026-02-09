@@ -1,5 +1,11 @@
-@import url('https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@2.0/nanumsquareround.css');
 @import "tailwindcss";
+
+@font-face {
+  font-family: 'NanumSquareRound';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+  font-weight: normal;
+  font-display: swap;
+}
 
 @theme inline {
   /* Primary Colors */
