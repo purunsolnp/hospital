@@ -69,7 +69,7 @@ export default function Services() {
                             <p className="text-xs text-primary font-semibold mb-3">
                                 {service.titleEn}
                             </p>
-                            <p className="text-sm text-gray-500 leading-relaxed mb-6">
+                            <p className="text-[15.5px] text-gray-500 leading-relaxed mb-6">
                                 {service.description}
                             </p>
                             <Link

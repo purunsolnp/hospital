@@ -5,11 +5,11 @@ export default function Hero() {
                 <div
                     className="relative min-h-[640px] flex items-center justify-center overflow-hidden rounded-b-[2rem] bg-cover bg-center"
                     style={{
-                        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuCh8TD97RkxshZpaAo9FDuh5fRoYZx7_VCxwxUjqXczay1SAWFXbYNSxm95GIAPPgBKzV0l1mSeDXStJHfs944KHXBaNcKZacqXS6I7BKZK7p5RCbZmfdSE-XQ-icYUXeIRS9-FXKY6j9N3OHKytbzB-CxnBQHksp9O5Oup6e9JIPrbGnIvoHjdbjIHP-GVd18xh6768G99S_Qeu3PtUhaUwzGTIqL74ik19g7i7sbb1MUxFyH_0L1eDgYZEpb-1DgPeNVf5YnjDKJd')`,
+                        backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)), url('/images/back2.png')`,
                     }}
                 >
                     <div className="z-10 text-center px-6 max-w-3xl">
-                        <span className="inline-block px-4 py-1.5 mb-6 text-xs font-bold tracking-[0.2em] uppercase bg-white/60 dark:bg-black/40 backdrop-blur-md rounded-full text-primary">
+                        <span className="inline-block px-5 py-2 mb-6 text-base font-bold tracking-[0.1em] uppercase bg-white/70 dark:bg-black/50 backdrop-blur-md rounded-full text-primary shadow-sm border border-white/20">
                             영어 진료 가능 · English Available
                         </span>
                         <h1 className="text-4xl md:text-6xl font-extrabold tracking-tighter text-[#111418] leading-[1.1] mb-6">

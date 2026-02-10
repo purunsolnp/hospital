@@ -55,7 +55,7 @@ export default function ContactPage() {
                                         <span className="material-symbols-outlined text-primary mt-1">pin_drop</span>
                                         <div>
                                             <p className="font-bold">주소</p>
-                                            <p className="text-gray-600 dark:text-gray-400 text-sm mt-1 leading-relaxed">
+                                            <p className="text-gray-600 dark:text-gray-400 text-[17px] mt-1 leading-relaxed">
                                                 서울특별시 구로구 디지털로 285<br />에이스트윈타워 203호
                                             </p>
                                         </div>
@@ -64,7 +64,7 @@ export default function ContactPage() {
                                         <span className="material-symbols-outlined text-primary mt-1">call</span>
                                         <div>
                                             <p className="font-bold">전화번호</p>
-                                            <a href="tel:+8228565557" className="text-primary text-lg font-black mt-1 block hover:underline">
+                                            <a href="tel:+8228565557" className="text-primary text-[22px] font-black mt-1 block hover:underline">
                                                 02-856-5557
                                             </a>
                                         </div>
@@ -114,7 +114,7 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <h4 className="font-bold mb-1">지하철</h4>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                                    <p className="text-[17px] text-gray-600 dark:text-gray-400 leading-relaxed">
                                         <span className="inline-block bg-green-500 text-white px-1.5 rounded text-[10px] font-bold mr-1">
                                             7호선
                                         </span>
@@ -132,7 +132,7 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <h4 className="font-bold mb-1">버스</h4>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                                    <p className="text-[17px] text-gray-600 dark:text-gray-400 leading-relaxed">
                                         <span className="font-bold text-green-600">5536, 5616, 6004</span><br />
                                         디지털산업1단지 정거장 하차
                                     </p>
@@ -144,7 +144,7 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <h4 className="font-bold mb-1">주차</h4>
-                                    <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                                    <p className="text-[17px] text-gray-600 dark:text-gray-400 leading-relaxed">
                                         건물 내 주차장 이용 가능<br />
                                         (자세한 안내는 전화 문의)
                                     </p>
