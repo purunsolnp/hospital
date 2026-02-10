@@ -19,8 +19,9 @@ export default function Hero() {
                             </span>
                             을 응원합니다
                         </h1>
-                        <p className="text-lg md:text-xl text-gray-700 leading-relaxed mb-10 font-medium">
-                            지친 마음을 쉬어갈 수 있는 편안한 공간에서,<br className="hidden md:block" />
+                        <p className="text-lg md:text-xl text-gray-700 leading-snug mb-10 font-medium">
+                            지친 마음을 쉬어갈 수 있는<br />
+                            편안한 공간에서<br />
                             전문적인 정신건강 진료를 받아보세요.
                         </p>
                         <div className="flex flex-col sm:flex-row gap-4 justify-center">
