@@ -44,7 +44,7 @@ export default function Contact() {
                                 </p>
                                 <a
                                     href="tel:+8228565557"
-                                    className="text-2xl font-black hover:text-primary transition-colors tracking-tight text-[#111418]"
+                                    className="text-2xl font-medium hover:text-primary transition-colors tracking-tight text-[#111418]"
                                 >
                                     02-856-5557
                                 </a>
@@ -60,7 +60,7 @@ export default function Contact() {
                                 <p className="text-xs text-primary/80 uppercase font-bold mb-1">
                                     주소
                                 </p>
-                                <p className="text-lg font-bold leading-relaxed text-[#111418]">
+                                <p className="text-lg font-medium leading-relaxed text-[#111418]">
                                     서울특별시 구로구 디지털로 285<br />
                                     에이스트윈타워 203호
                                 </p>
@@ -76,11 +76,11 @@ export default function Contact() {
                                 <p className="text-xs text-primary/80 uppercase font-bold mb-1">
                                     진료시간
                                 </p>
-                                <div className="text-lg font-bold leading-relaxed text-[#111418]">
+                                <div className="text-lg font-medium leading-relaxed text-[#111418]">
                                     <p>월, 금: 10:00 - 19:00</p>
                                     <p>화, 목: 10:00 - 20:00</p>
                                     <p>토: 10:00 - 13:00</p>
-                                    <p className="text-red-500 font-extrabold">수, 일, 공휴일: 휴진</p>
+                                    <p className="text-red-500 font-semibold">수, 일, 공휴일: 휴진</p>
                                 </div>
                             </div>
                         </div>
