@@ -1,0 +1,17 @@
+# Render Blueprint - Next.js 배포용
+# https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: hospital
+    runtime: node
+    region: singapore
+
+    # GitHub 연결 시 사용할 브랜치 (v2)
+    branch: v2
+
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+
+    envVars:
+      - key: NODE_VERSION
+        value: 20
