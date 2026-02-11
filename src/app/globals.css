@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Disable dark mode completely - dark: classes will never apply */
+@custom-variant dark (&:where(.force-dark-disabled));
+
 html {
   scroll-behavior: smooth;
   color-scheme: light;
