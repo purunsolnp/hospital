@@ -2,6 +2,7 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: light;
 }
 
 @font-face {
@@ -93,12 +94,7 @@ html {
   --primary-color: #2F5C56;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #101822;
-    --foreground: #ededed;
-  }
-}
+
 
 body {
   font-family: 'Pretendard', sans-serif;

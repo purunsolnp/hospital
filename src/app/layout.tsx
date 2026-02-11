@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://purunsol.org"),
   title: "푸른솔 정신건강의학과",
   description: "다시금 되찾을 당신의 일상을 응원합니다. 지친 마음을 쉬어갈 수 있는 편안한 공간에서 전문적인 정신건강 진료를 받아보세요.",
   openGraph: {
@@ -34,14 +35,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko">
+    <html lang="ko" className="light">
       <head>
         <link
           href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
           rel="stylesheet"
         />
       </head>
-      <body className="bg-background-light dark:bg-background-dark text-[#111418] dark:text-gray-100 transition-colors duration-300">
+      <body className="bg-background-light text-[#111418]">
         {children}
       </body>
     </html>
