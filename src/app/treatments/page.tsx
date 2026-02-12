@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Link from "next/link";
+import SmoothScrollController from "@/components/SmoothScrollController";
 
 export const metadata = {
     title: "진료 과목 | 푸른솔 정신건강의학과",
@@ -87,14 +88,7 @@ export default function TreatmentsPage() {
             <main className="flex-1 pt-20">
                 {/* Hero Section */}
                 <section className="relative h-[300px] flex items-center justify-center overflow-hidden bg-primary/5">
-                    <div
-                        className="absolute inset-0 opacity-20"
-                        style={{
-                            backgroundImage:
-                                "radial-gradient(circle at 2px 2px, #2F5C56 1px, transparent 0)",
-                            backgroundSize: "40px 40px",
-                        }}
-                    ></div>
+
                     <div className="relative z-10 max-w-[960px] text-center px-4">
                         <h1 className="text-4xl md:text-5xl font-extrabold text-primary mb-6 leading-tight">
                             전문 진료 프로그램
@@ -183,8 +177,10 @@ export default function TreatmentsPage() {
                             치유를 시작할 준비가 되셨나요?
                         </h2>
                         <p className="text-lg md:text-xl max-w-2xl mx-auto text-white/90">
-                            혼자서 짐을 짊어지지 않아도 됩니다. 오늘 예약하시고 더 밝은 내일을
-                            향한 첫 걸음을 내딛으세요.
+                            혼자서 짐을 짊어지지 않아도 됩니다.
+                            <span className="block mt-1">
+                                오늘 예약하시고 더 밝은 내일을 향한 <br className="md:hidden" /> 첫 걸음을 내딛으세요.
+                            </span>
                         </p>
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-6">
                             <a
@@ -202,8 +198,9 @@ export default function TreatmentsPage() {
                         </div>
                     </div>
                 </div>
-            </main>
+            </main >
             <Footer />
-        </div>
+            <SmoothScrollController />
+        </div >
     );
 }

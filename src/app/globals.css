@@ -4,7 +4,6 @@
 @custom-variant dark (&:where(.force-dark-disabled));
 
 html {
-  scroll-behavior: smooth;
   color-scheme: light;
 }
 

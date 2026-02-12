@@ -40,7 +40,7 @@ export default function GuidePage() {
                 <h1 className="text-3xl font-bold text-center mb-10 text-gray-900 dark:text-white">진료 안내</h1>
 
                 {/* Tabs */}
-                <div className="flex justify-center gap-3 mb-10 flex-wrap">
+                <div className="grid grid-cols-2 gap-3 mb-10 md:flex md:justify-center md:flex-wrap">
                     <button
                         onClick={() => setActiveTab("process")}
                         className={`px-6 py-3 rounded-full font-bold text-sm md:text-base transition-all shadow-sm ${activeTab === "process"
@@ -95,7 +95,7 @@ export default function GuidePage() {
                                     <div className="flex items-center justify-between mb-8">
                                         <h3 className="text-2xl font-bold flex items-center gap-3 text-gray-900 dark:text-white">
                                             <span className="bg-primary/10 text-primary w-10 h-10 rounded-lg flex items-center justify-center font-extrabold text-sm">01</span>
-                                            초진 (First Visit)
+                                            초진 <br className="md:hidden" />(First Visit)
                                         </h3>
                                         <span className="text-xs font-bold px-3 py-1 bg-primary text-white rounded-full uppercase tracking-tighter shadow-sm">약 50분 소요</span>
                                     </div>
@@ -163,7 +163,7 @@ export default function GuidePage() {
                                     <div className="flex items-center justify-between mb-8">
                                         <h3 className="text-2xl font-bold flex items-center gap-3 text-gray-900 dark:text-white">
                                             <span className="bg-primary/10 text-primary w-10 h-10 rounded-lg flex items-center justify-center font-extrabold text-sm">02</span>
-                                            재진 (Follow-up)
+                                            재진 <br className="md:hidden" />(Follow-up)
                                         </h3>
                                         <span className="text-xs font-bold px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-500 rounded-full uppercase tracking-tighter">약 15-20분 소요</span>
                                     </div>
@@ -204,7 +204,7 @@ export default function GuidePage() {
                                             <div>
                                                 <h4 className="font-bold text-lg mb-1 text-gray-900 dark:text-white">수납 및 다음 예약</h4>
                                                 <p className="text-gray-600 dark:text-gray-400 text-[17px] leading-relaxed">
-                                                    키오스크 또는 데스크에서 수납 후<br />
+                                                    데스크에서 수납 후<br />
                                                     다음 내원 일정을 예약합니다.
                                                 </p>
                                             </div>
