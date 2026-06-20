@@ -16,8 +16,8 @@ const Calendar = dynamic(() => import("@/components/Calendar"), {
 
 // Regular schedule data (fixed)
 const regularHours = [
-    { day: "월요일", hours: "10:00 - 19:00", note: "" },
-    { day: "화요일", hours: "10:00 - 20:00", note: "야간 진료" },
+    { day: "월요일", hours: "10:00 - 20:00", note: "야간 진료" },
+    { day: "화요일", hours: "10:00 - 19:00", note: "" },
     { day: "수요일", hours: "휴진", note: "" },
     { day: "목요일", hours: "10:00 - 20:00", note: "야간 진료" },
     { day: "금요일", hours: "10:00 - 19:00", note: "" },

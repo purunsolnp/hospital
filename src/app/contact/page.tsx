@@ -82,12 +82,12 @@ export default function ContactPage() {
                                     <table className="w-full text-sm">
                                         <tbody>
                                             <tr className="border-b border-gray-50 dark:border-gray-800">
-                                                <td className="p-3 font-medium">월, 금</td>
-                                                <td className="p-3 text-right">10:00 - 19:00</td>
+                                                <td className="p-3 font-medium">월, 목</td>
+                                                <td className="p-3 text-right">10:00 - 20:00</td>
                                             </tr>
                                             <tr className="border-b border-gray-50 dark:border-gray-800 bg-primary/5">
-                                                <td className="p-3 font-bold text-primary">화, 목</td>
-                                                <td className="p-3 text-right font-bold text-primary">10:00 - 20:00</td>
+                                                <td className="p-3 font-bold text-primary">화, 금</td>
+                                                <td className="p-3 text-right font-bold text-primary">10:00 - 19:00</td>
                                             </tr>
                                             <tr className="border-b border-gray-50 dark:border-gray-800">
                                                 <td className="p-3 font-medium">토요일</td>

@@ -13,11 +13,11 @@ export default function Hours() {
                     <div className="space-y-4">
                         <div className="flex justify-between items-center py-3 border-b border-gray-100 dark:border-gray-800">
                             <span className="font-semibold">월요일 (Mon)</span>
-                            <span className="text-gray-600">10:00 ~ 19:00</span>
+                            <span className="text-gray-600">10:00 ~ 20:00</span>
                         </div>
                         <div className="flex justify-between items-center py-3 border-b border-gray-100 dark:border-gray-800">
                             <span className="font-semibold">화요일 (Tue)</span>
-                            <span className="text-gray-600">10:00 ~ 20:00</span>
+                            <span className="text-gray-600">10:00 ~ 19:00</span>
                         </div>
                         <div className="flex justify-between items-center py-3 border-b border-gray-100 dark:border-gray-800">
                             <span className="font-semibold text-gray-400">수요일 (Wed)</span>

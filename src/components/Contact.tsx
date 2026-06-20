@@ -77,8 +77,8 @@ export default function Contact() {
                                     진료시간
                                 </p>
                                 <div className="text-lg font-medium leading-relaxed text-[#111418]">
-                                    <p>월, 금: 10:00 - 19:00</p>
-                                    <p>화, 목: 10:00 - 20:00</p>
+                                    <p>월, 목: 10:00 - 20:00</p>
+                                    <p>화, 금: 10:00 - 19:00</p>
                                     <p>토: 10:00 - 13:00</p>
                                     <p className="text-red-500 font-semibold">수, 일, 공휴일: 휴진</p>
                                 </div>
